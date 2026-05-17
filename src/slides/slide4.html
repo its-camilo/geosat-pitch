@@ -1,0 +1,77 @@
+<section class="slide panel" id="panel-4" data-title="ARQUITECTURA" data-stage="0">
+
+  <header class="p4-header">
+    <p class="eyebrow">03 — Flujo de datos · 2:20 — 3:40</p>
+    <h2 class="display" style="margin-top:10px;">Del dato a la <em>alerta</em>.</h2>
+  </header>
+
+  <div class="flow-stages">
+
+    <div class="stage-card" data-stage-idx="0">
+      <div class="stage-num">01</div>
+      <div class="stage-name">Captación</div>
+      <div class="stage-nodes">
+        <span>📷 Fotos comunitarias</span>
+        <span>🛰 Sentinel-2 · Landsat</span>
+        <span>🌊 Datos de mareas</span>
+      </div>
+    </div>
+
+    <div class="stage-connector"><span>›</span></div>
+
+    <div class="stage-card" data-stage-idx="1">
+      <div class="stage-num">02</div>
+      <div class="stage-name">Procesamiento</div>
+      <div class="stage-nodes">
+        <span>⚙ Filtro de calidad</span>
+        <span>📐 CoastSeg · cm</span>
+        <span>💾 BD Geoespacial</span>
+      </div>
+    </div>
+
+    <div class="stage-connector"><span>›</span></div>
+
+    <div class="stage-card" data-stage-idx="2">
+      <div class="stage-num">03</div>
+      <div class="stage-name">Validación</div>
+      <div class="stage-nodes">
+        <span>✓ GEE · Sentinel</span>
+        <span>🔍 Firmas espectrales</span>
+        <span>0️⃣ Cero falsos positivos</span>
+      </div>
+    </div>
+
+    <div class="stage-connector"><span>›</span></div>
+
+    <div class="stage-card" data-stage-idx="3">
+      <div class="stage-num">04</div>
+      <div class="stage-name">Clasificación</div>
+      <div class="stage-nodes">
+        <span>📊 Tasa de erosión</span>
+        <span>⚖ Umbral de riesgo</span>
+        <span>🚦 Nivel de alerta</span>
+      </div>
+    </div>
+
+    <div class="stage-connector"><span>›</span></div>
+
+    <div class="stage-card" data-stage-idx="4">
+      <div class="stage-num">05</div>
+      <div class="stage-name">Distribución</div>
+      <div class="stage-nodes">
+        <span>📱 SMS · Cell Broadcast</span>
+        <span>💬 WhatsApp · FB · IG</span>
+        <span>🏪 Feed comercial</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="alert-strip">
+    <div class="as-item green"><span class="alert-dot"></span> Verde · Monitoreo</div>
+    <div class="as-item yellow"><span class="alert-dot"></span> Amarillo · Preparar</div>
+    <div class="as-item orange"><span class="alert-dot"></span> Naranja · Alistar</div>
+    <div class="as-item red"><span class="alert-dot"></span> Rojo · ¡Evacuar!</div>
+  </div>
+
+</section>
