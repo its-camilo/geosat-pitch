@@ -10,6 +10,10 @@
   --font-sans: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-title: 'Nunito Sans', system-ui, sans-serif;
   --font-subtitle: Verdana, Geneva, sans-serif;
+  /* Bandera de Colombia (franja decorativa inferior) */
+  --flag-col-yellow: #fcd116;
+  --flag-col-blue: #003893;
+  --flag-col-red: #ce1126;
   /* Ancho real del layout (sin gutter de scrollbar); se actualiza desde main.js */
   --viewport-width: 100vw;
 }
@@ -74,6 +78,7 @@ body::-webkit-scrollbar {
 }
 
 .slide {
+  position: relative;
   flex: 0 0 var(--viewport-width);
   width: var(--viewport-width);
   min-height: 100vh;
@@ -191,4 +196,38 @@ body::-webkit-scrollbar {
   border: none;
   background: var(--color-surface);
   box-shadow: none;
+}
+
+/* Línea tricolor (proporción bandera CO: 50% / 25% / 25%), centrada abajo */
+.slide-flag-line {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(0.5rem, 2.2dvh, 1.25rem);
+  transform: translateX(-50%);
+  display: flex;
+  width: min(10rem, 12vw);
+  max-width: 85%;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.slide-flag-line__y {
+  flex: 2 0 0;
+  min-width: 0;
+  background: var(--flag-col-yellow);
+}
+
+.slide-flag-line__b {
+  flex: 1 0 0;
+  min-width: 0;
+  background: var(--flag-col-blue);
+}
+
+.slide-flag-line__r {
+  flex: 1 0 0;
+  min-width: 0;
+  background: var(--flag-col-red);
 }
