@@ -8,6 +8,8 @@
   --color-text: var(--color-gray-dark);
   --color-surface: #ffffff;
   --font-sans: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-title: 'Nunito Sans', system-ui, sans-serif;
+  --font-subtitle: Verdana, Geneva, sans-serif;
   /* Ancho real del layout (sin gutter de scrollbar); se actualiza desde main.js */
   --viewport-width: 100vw;
 }
@@ -107,6 +109,7 @@ body::-webkit-scrollbar {
 
 .slide-title {
   margin: 0;
+  font-family: var(--font-title);
   font-size: clamp(1.75rem, 4vw + 1rem, 3.25rem);
   font-weight: 700;
   line-height: 1.12;
@@ -150,6 +153,7 @@ body::-webkit-scrollbar {
 
 .slide-subtitle {
   margin: 1rem 0 0;
+  font-family: var(--font-subtitle);
   font-size: clamp(1rem, 1.5vw + 0.75rem, 1.35rem);
   font-weight: 500;
   color: var(--color-text);
