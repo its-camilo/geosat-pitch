@@ -1,0 +1,190 @@
+/* Paleta institucional UNGRD (manual de marca) */
+:root {
+  --color-blue: #213362;
+  --color-gold: #ffcd00;
+  --color-gray-light: #dadada;
+  --color-gray-dark: #575756;
+  --color-bg: #ffffff;
+  --color-text: var(--color-gray-dark);
+  --color-surface: #ffffff;
+  --font-sans: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Ancho real del layout (sin gutter de scrollbar); se actualiza desde main.js */
+  --viewport-width: 100vw;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  background: var(--color-bg);
+  /* Oculta la barra de scroll del documento; el scroll con rueda sigue activo */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.1vw + 14px, 20px);
+  line-height: 1.45;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Contenedor que engancha el pin de ScrollTrigger y recorta el overflow horizontal */
+.scroll-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+/* Carril horizontal: una fila de diapositivas; ancho de cada slide = --viewport-width */
+.horizontal-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: max-content;
+  height: 100vh;
+  height: 100dvh;
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 var(--viewport-width);
+  width: var(--viewport-width);
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+  background: var(--color-bg);
+}
+
+/* Título en franja superior a todo el ancho; media ocupa el resto */
+.slide-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  gap: 0;
+}
+
+.slide-text {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 4vw, 3rem);
+  padding-bottom: clamp(0.75rem, 2vh, 1.25rem);
+  box-sizing: border-box;
+}
+
+.slide-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw + 1rem, 3.25rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--color-blue);
+  max-width: 100%;
+}
+
+/* Contenedor del efecto tipo TextType (React Bits, vanilla) */
+.slide-title__type {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  white-space: pre-wrap;
+  vertical-align: top;
+}
+
+.slide-title__text {
+  display: inline;
+}
+
+.slide-title__cursor {
+  margin-left: 0.25rem;
+  display: inline-block;
+  opacity: 1;
+}
+
+.slide-title__cursor.slide-title__cursor--hidden {
+  display: none;
+}
+
+.slide-title__type::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: 1rem;
+  border-radius: 2px;
+  background: var(--color-gold);
+}
+
+.slide-subtitle {
+  margin: 1rem 0 0;
+  font-size: clamp(1rem, 1.5vw + 0.75rem, 1.35rem);
+  font-weight: 500;
+  color: var(--color-text);
+  max-width: 100%;
+}
+
+.slide-subtitle__type {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  white-space: pre-wrap;
+  vertical-align: top;
+}
+
+.slide-subtitle__text {
+  display: inline;
+}
+
+.slide-subtitle__cursor {
+  margin-left: 0.25rem;
+  display: inline-block;
+  opacity: 1;
+}
+
+.slide-subtitle__cursor.slide-subtitle__cursor--hidden {
+  display: none;
+}
+
+/* Área de media: todo el alto bajo la franja del título, ancho completo */
+.media-placeholder {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  border-radius: 0;
+  border: none;
+  background: var(--color-surface);
+  box-shadow: none;
+}
