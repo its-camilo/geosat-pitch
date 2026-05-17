@@ -12,10 +12,8 @@
   </head>
   <body>
 
-    <!-- Three.js canvas — fixed behind everything -->
     <canvas id="three-canvas"></canvas>
 
-    <!-- Fixed chrome -->
     <div class="chrome" id="brand">
       <span class="mark"></span>
       <span>GEOSAT · v1.0</span>
@@ -33,477 +31,402 @@
       </div>
       <div class="progress-label">
         <span class="current" id="currentSection">01</span>
-        <span> / 08 · </span>
-        <span id="currentTitle">PORTADA</span>
+        <span> / 06 · </span>
+        <span id="currentTitle">EL PROBLEMA</span>
       </div>
     </div>
 
     <nav id="dots" aria-label="Navegación de secciones">
-      <button data-idx="0" class="active" title="Portada"></button>
-      <button data-idx="1" title="Problemática"></button>
-      <button data-idx="2" title="Arquitectura"></button>
-      <button data-idx="3" title="Sensores"></button>
-      <button data-idx="4" title="Alertas"></button>
-      <button data-idx="5" title="Incentivos"></button>
-      <button data-idx="6" title="Presupuesto"></button>
-      <button data-idx="7" title="Cierre"></button>
+      <button data-idx="0" class="active" title="El Problema"></button>
+      <button data-idx="1" title="La Solución"></button>
+      <button data-idx="2" title="Inclusión Social"></button>
+      <button data-idx="3" title="Arquitectura Técnica"></button>
+      <button data-idx="4" title="Viabilidad"></button>
+      <button data-idx="5" title="Cierre"></button>
     </nav>
 
-    <!-- Horizontal scroll container -->
     <div class="scroll-container">
       <div class="horizontal-wrapper">
 
-        <!-- PANEL 1 — Hero -->
-        <section class="slide panel" id="panel-1" data-title="PORTADA">
-          <div class="top-row">
-            <div>
-              <p class="eyebrow">HACKATÓN 2026 · PROPUESTA</p>
-              <p class="mono" style="margin-top:14px; opacity:.55;">Sistema de Alerta Temprana de Bajo Costo</p>
+        <!-- =====================================================
+             SLIDE 1 — El Gancho · DARK PANEL
+        ====================================================== -->
+        <section class="slide panel" id="panel-1" data-title="EL PROBLEMA">
+          <div class="p1-content">
+            <p class="eyebrow p1-eyebrow">HACKATÓN 2026 · 0:00 — 0:20</p>
+
+            <div class="p1-stat-block">
+              <div class="p1-pct">47<span class="pct-sign">%</span></div>
+              <p class="p1-stat-label">
+                del Caribe colombiano<br/>
+                en riesgo inminente<br/>
+                por erosión costera.
+              </p>
             </div>
-            <div class="mono" style="text-align:right; opacity:.55;">
-              11.05.2026<br/>UNIVERSIDAD NACIONAL DE COLOMBIA
+
+            <div class="p1-failures-block">
+              <p class="mono p1-fail-header">LOS SISTEMAS ACTUALES FRACASAN</p>
+              <div class="failure f1"><span class="fail-bar"></span>Monitoreo Manual</div>
+              <div class="failure f2"><span class="fail-bar"></span>Altos Costos</div>
+              <div class="failure f3"><span class="fail-bar"></span>Desconfianza Comunitaria</div>
             </div>
+
+            <blockquote class="p1-quote">
+              "Sin la comunidad, ningún sistema<br/>
+              de alerta temprana <em>sobrevive</em>."
+            </blockquote>
           </div>
 
-          <div class="hero-title">
-            <h1 class="display"
-                data-type-text="GeoSAT."
-                aria-label="GeoSAT.">
-              <span class="slide-title__type">
-                <span class="slide-title__text"></span>
-                <span class="slide-title__cursor" aria-hidden="true">|</span>
-              </span><br/>
-              <span class="display-sub">Una costa que<br/>se <em>cuida sola</em>.</span>
-            </h1>
+          <div class="p1-right" aria-hidden="true">
+            <video class="p1-video" src="/erosion.mp4" autoplay muted loop playsinline></video>
           </div>
 
-          <div class="bottom-row">
-            <p class="lede" style="max-width:36ch;">
-              Una alerta temprana de erosión costera que cabe en un celular,
-              se sostiene con la comunidad y cuesta menos que un salario mínimo.
-            </p>
-            <div class="scroll-hint">
-              <span>Desliza para explorar</span>
-              <span class="arrow"></span>
-            </div>
-          </div>
         </section>
 
-        <!-- PANEL 2 — Problemática -->
-        <section class="slide panel" id="panel-2" data-title="LA PROBLEMÁTICA">
-          <div>
-            <p class="eyebrow">01 — La problemática</p>
-            <h2 class="display" style="margin-top:24px;">
-              La costa colombiana<br/>retrocede en <em>silencio</em>.
+        <!-- =====================================================
+             SLIDE 2 — La Solución: GeoSAT
+        ====================================================== -->
+        <section class="slide panel" id="panel-2" data-title="LA SOLUCIÓN">
+
+          <div class="p2-left">
+            <p class="eyebrow">01 — La Solución · 0:20 — 1:20</p>
+            <h2 class="display" style="margin-top:20px;">
+              GeoSAT: una solución<br/><em>sociotécnica</em>.
             </h2>
-            <p class="lede" style="margin-top:28px;">
-              En Dibulla, La Guajira, la línea de costa cede tierra cada año
-              y deja sin sistema de alerta a residentes, pescadores y comunidades
-              étnicas. La gestión del riesgo costero opera con redes manuales y
-              presupuestos que los municipios de sexta categoría no pueden pagar.
+            <p class="lede" style="margin-top:18px; max-width:40ch;">
+              Ciencia ciudadana + inteligencia artificial + economía local.
+              Sin sensores costosos. Sin intermediarios.
             </p>
-          </div>
 
-          <div>
-            <p class="mono" style="opacity:.55;">DATOS NACIONALES · INVEMAR · IDEAM · WORLD BANK</p>
-            <div class="stat-grid">
-              <div class="stat">
-                <div class="num coral">47%</div>
-                <div class="label">Del Caribe colombiano en<br/>riesgo de erosión</div>
-              </div>
-              <div class="stat">
-                <div class="num sand">1.6 km</div>
-                <div class="label">Retroceso en Arboletes<br/>desde 1953</div>
-              </div>
-              <div class="stat">
-                <div class="num coral">74%</div>
-                <div class="label">Red manual de monitoreo,<br/>sin tiempo real</div>
-              </div>
-              <div class="stat">
-                <div class="num tide">6ª</div>
-                <div class="label">Categoría de los municipios<br/>costeros sin capacidad técnica</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="coord">
-            <span>LAT 11.27° N</span>
-            <span>LON -73.30° W</span>
-            <span>ZONA · LITORAL CARIBE</span>
-          </div>
-        </section>
-
-        <!-- PANEL 3 — Arquitectura -->
-        <section class="slide panel" id="panel-3" data-title="LA SOLUCIÓN">
-          <div>
-            <p class="eyebrow">02 — Arquitectura</p>
-            <h2 class="display" style="margin-top:24px;">
-              Un SAT<br/><em>sociotécnico</em>.
-            </h2>
-            <p class="lede" style="margin-top:24px;">
-              GeoSAT mezcla ciencia ciudadana, teledetección satelital e
-              inteligencia artificial en la nube. Sin sensores costosos en
-              terreno: las fotos las pone la comunidad, los datos pesados
-              los pone el satélite, y la decisión la toma un modelo de
-              visión por computadora con validación cruzada.
-            </p>
-          </div>
-
-          <div>
-            <p class="mono" style="opacity:.55;">CICLO DE DATOS · FOTO → IA → ALERTA</p>
-            <ol class="arch-list">
-              <li>
-                <span class="step">01</span>
-                <div>
-                  <div class="step-title">Captura ciudadana</div>
-                  <div class="step-body">PWA en React con geofencing de Google Maps invita a usar
-                  estaciones físicas de acero. Modo offline con IndexedDB y Background Sync.</div>
+            <div class="tech-cards">
+              <div class="tech-card panel-reveal tc-r1">
+                <div class="tc-header">
+                  <span class="tc-badge">Python · Open-source</span>
+                  <span class="tc-tag">NÚCLEO</span>
                 </div>
-              </li>
-              <li>
-                <span class="step">02</span>
-                <div>
-                  <div class="step-title">Procesamiento en la nube</div>
-                  <div class="step-body">Cloud Run + CoastSeg ejecutan rectificación determinista
-                  y extraen la línea de costa con resolución sub-métrica.</div>
+                <div class="tc-name">CoastSeg</div>
+                <div class="tc-role">Procesamiento Centralizado</div>
+                <div class="tc-body">
+                  Extrae la línea de costa con precisión centimétrica
+                  a partir de fotografías convencionales desde postes
+                  de referencia fijos. Cloud Run en Google Cloud.
                 </div>
-              </li>
-              <li>
-                <span class="step">03</span>
-                <div>
-                  <div class="step-title">Validación cruzada</div>
-                  <div class="step-body">Google Earth Engine valida con Sentinel-2 y Landsat 8/9
-                  para filtrar falsos positivos antes de emitir cualquier alerta.</div>
+              </div>
+
+              <div class="tech-card panel-reveal tc-r2">
+                <div class="tc-header">
+                  <span class="tc-badge gee-badge">Google · Sentinel-2 · Landsat</span>
+                  <span class="tc-tag">VALIDACIÓN</span>
                 </div>
-              </li>
-              <li>
-                <span class="step">04</span>
-                <div>
-                  <div class="step-title">Difusión omnicanal</div>
-                  <div class="step-body">WhatsApp, Facebook, Instagram, SMS y Cell Broadcast.
-                  Líderes sociales aseguran la "última milla" donde la red móvil falla.</div>
+                <div class="tc-name">GEE</div>
+                <div class="tc-role">Validación Cruzada Satelital</div>
+                <div class="tc-body">
+                  Google Earth Engine contrasta con firmas espectrales
+                  de Sentinel-2 y Landsat. Blindaje total contra
+                  falsos positivos en alertas críticas.
                 </div>
-              </li>
-            </ol>
-          </div>
-        </section>
-
-        <!-- PANEL 4 — Sensores -->
-        <section class="slide panel" id="panel-4" data-title="SENSORES">
-          <header>
-            <p class="eyebrow">03 — Componente de monitoreo</p>
-            <h2 class="display" style="margin-top:18px; font-size:clamp(48px,5vw,84px);">
-              Tres capas de <em>vigilancia</em>.
-            </h2>
-            <p class="body-text" style="margin-top:20px; max-width:64ch;">
-              Cada capa cubre lo que la otra no puede. El smartphone aporta frecuencia
-              y compromiso social. El satélite aporta cobertura. La marea aporta verdad
-              geométrica para que ninguna alerta nazca de una pleamar.
-            </p>
-          </header>
-
-          <div class="sensor-row">
-            <article class="sensor-card">
-              <svg class="ico-3d" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="gphone" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#1a5080"/>
-                    <stop offset="100%" stop-color="#0d2a4a"/>
-                  </linearGradient>
-                </defs>
-                <g transform="translate(100 65) rotate(-12) translate(-32 -55)">
-                  <rect x="0" y="0" width="64" height="110" rx="9" fill="url(#gphone)" stroke="#2a8aaa" stroke-width="0.8"/>
-                  <rect x="4" y="10" width="56" height="92" rx="3" fill="#0a1929"/>
-                  <line x1="4" y1="40" x2="60" y2="40" stroke="#2a8aaa" stroke-width="0.5" opacity="0.8"/>
-                  <line x1="4" y1="65" x2="60" y2="65" stroke="#2a8aaa" stroke-width="0.5" opacity="0.8"/>
-                  <line x1="4" y1="80" x2="60" y2="80" stroke="#4ad6e8" stroke-width="0.8"/>
-                  <path d="M 4 80 Q 18 76, 32 79 T 60 80" stroke="#e05030" stroke-width="1.2" fill="none"/>
-                  <circle cx="32" cy="6" r="1.2" fill="#4ad6e8"/>
-                </g>
-                <g stroke="#2a8aaa" stroke-width="0.5" opacity="0.5" fill="none">
-                  <path d="M 30 100 Q 40 90 50 100"/>
-                  <path d="M 25 110 Q 40 95 55 110"/>
-                </g>
-              </svg>
-              <span class="tag">Capa 01 · Terrestre</span>
-              <h3>Fotogrametría<br/>ciudadana</h3>
-              <p>Cámaras CMOS de teléfonos comunes + cuna de acero inoxidable.
-              Marcadores ArUco para rectificación centimétrica.</p>
-              <div class="specs">
-                <div class="spec-row"><span>RANGO</span><span>LOCAL · &lt;0.5 m</span></div>
-                <div class="spec-row"><span>FRECUENCIA</span><span>BAJO DEMANDA</span></div>
-                <div class="spec-row"><span>ENERGÍA</span><span>BYOD · 24/7</span></div>
-              </div>
-            </article>
-
-            <article class="sensor-card">
-              <svg class="ico-3d" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="gpanel" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#1a2b6c"/>
-                    <stop offset="100%" stop-color="#0a1144"/>
-                  </linearGradient>
-                </defs>
-                <g transform="translate(100 65)">
-                  <g transform="rotate(-18)">
-                    <rect x="-72" y="-10" width="44" height="20" fill="url(#gpanel)" stroke="#3a5acc" stroke-width="0.6"/>
-                    <rect x="28" y="-10" width="44" height="20" fill="url(#gpanel)" stroke="#3a5acc" stroke-width="0.6"/>
-                    <line x1="-72" y1="-3" x2="-28" y2="-3" stroke="#3a5acc" stroke-width="0.3"/>
-                    <line x1="-72" y1="3"  x2="-28" y2="3"  stroke="#3a5acc" stroke-width="0.3"/>
-                    <line x1="28" y1="-3" x2="72" y2="-3" stroke="#3a5acc" stroke-width="0.3"/>
-                    <line x1="28" y1="3"  x2="72" y2="3"  stroke="#3a5acc" stroke-width="0.3"/>
-                    <rect x="-26" y="-12" width="52" height="24" rx="2" fill="#e0dac8" stroke="#b0a898"/>
-                    <rect x="-22" y="-8" width="14" height="6" fill="#2a8aaa" opacity="0.9"/>
-                    <rect x="-4" y="-8" width="8" height="6" fill="#4ad6e8" opacity="0.9"/>
-                    <ellipse cx="0" cy="-18" rx="8" ry="3" fill="#b0a898"/>
-                    <line x1="0" y1="-15" x2="0" y2="-12" stroke="#b0a898" stroke-width="1.2"/>
-                  </g>
-                  <path d="M 0 0 L -40 60" stroke="#2a8aaa" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.6"/>
-                </g>
-              </svg>
-              <span class="tag">Capa 02 · Orbital</span>
-              <h3>Teledetección<br/>satelital</h3>
-              <p>Sentinel-2 y Landsat 8/9. Índice NDWI sobre Google Earth Engine
-              para validar cambios regionales en la línea de costa.</p>
-              <div class="specs">
-                <div class="spec-row"><span>RANGO</span><span>REGIONAL · ~5 m</span></div>
-                <div class="spec-row"><span>FRECUENCIA</span><span>CICLO ORBITAL</span></div>
-                <div class="spec-row"><span>FUENTE</span><span>ESA / NASA / USGS</span></div>
-              </div>
-            </article>
-
-            <article class="sensor-card">
-              <svg class="ico-3d" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
-                <g transform="translate(0 90)">
-                  <path d="M 0 0 Q 25 -20 50 0 T 100 0 T 150 0 T 200 0 L 200 40 L 0 40 Z" fill="#1a5080" opacity="0.35"/>
-                  <path d="M 0 -8 Q 25 -28 50 -8 T 100 -8 T 150 -8 T 200 -8" fill="none" stroke="#2a8aaa" stroke-width="1.2"/>
-                  <path d="M 0 -16 Q 25 -36 50 -16 T 100 -16 T 150 -16 T 200 -16" fill="none" stroke="#4ad6e8" stroke-width="0.8" opacity="0.7"/>
-                  <path d="M 0 -24 Q 25 -44 50 -24 T 100 -24 T 150 -24 T 200 -24" fill="none" stroke="#4ad6e8" stroke-width="0.6" opacity="0.4"/>
-                </g>
-                <g transform="translate(170 25)">
-                  <line x1="0" y1="0" x2="0" y2="70" stroke="#8a7040" stroke-width="0.8"/>
-                  <line x1="-4" y1="10" x2="0" y2="10" stroke="#8a7040"/>
-                  <line x1="-4" y1="25" x2="0" y2="25" stroke="#8a7040"/>
-                  <line x1="-4" y1="40" x2="0" y2="40" stroke="#8a7040"/>
-                  <line x1="-4" y1="55" x2="0" y2="55" stroke="#8a7040"/>
-                  <text x="-22" y="42" font-family="JetBrains Mono" font-size="6" fill="#8a7040">0.0m</text>
-                </g>
-              </svg>
-              <span class="tag">Capa 03 · Hidrodinámica</span>
-              <h3>Referencia<br/>de mareas</h3>
-              <p>Datos de IDEAM/NOAA o mareógrafos para normalizar
-              la geometría. Sin esto, una marea alta dispararía falsas alarmas.</p>
-              <div class="specs">
-                <div class="spec-row"><span>RANGO</span><span>ZONAL · MM-CM</span></div>
-                <div class="spec-row"><span>FRECUENCIA</span><span>CONTINUA</span></div>
-                <div class="spec-row"><span>FUENTE</span><span>IDEAM · NOAA</span></div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <!-- PANEL 5 — Alertas -->
-        <section class="slide panel" id="panel-5" data-title="ALERTAS">
-          <div>
-            <p class="eyebrow">04 — Procesamiento &amp; Alerta</p>
-            <h2 class="display" style="margin-top:24px;">
-              De foto<br/>a alerta<br/>en <em>~30 seg</em>.
-            </h2>
-            <p class="body-text" style="margin-top:24px;">
-              El motor analiza la imagen en la nube con Gemini API,
-              la valida contra el satélite y, si supera el umbral,
-              publica la alerta por todos los canales en paralelo.
-              Cuatro niveles, lenguaje claro, acción inequívoca.
-            </p>
-
-            <div style="margin-top:32px; display:flex; gap:32px;">
-              <div>
-                <div class="mono" style="opacity:.55;">PROCESAMIENTO IA</div>
-                <div class="big-stat tide">20-55s</div>
-              </div>
-              <div>
-                <div class="mono" style="opacity:.55;">VALIDACIÓN GEE</div>
-                <div class="big-stat sand">cruzada</div>
-              </div>
-              <div>
-                <div class="mono" style="opacity:.55;">CANALES</div>
-                <div class="big-stat ocean">05</div>
               </div>
             </div>
           </div>
 
-          <div>
-            <p class="mono" style="opacity:.55;">PROTOCOLO DE ALERTA · 4 NIVELES</p>
-            <div class="alert-levels">
-              <div class="alert-row green">
-                <span class="lvl"><span class="alert-dot"></span> VERDE</span>
-                <span class="msg">Condiciones estables</span>
-                <span class="act">MONITOREO</span>
-              </div>
-              <div class="alert-row yellow">
-                <span class="lvl"><span class="alert-dot"></span> AMARILLO</span>
-                <span class="msg">Atención: anomalía costera</span>
-                <span class="act">PREPARAR</span>
-              </div>
-              <div class="alert-row orange">
-                <span class="lvl"><span class="alert-dot"></span> NARANJA</span>
-                <span class="msg">Prepárese para evacuar</span>
-                <span class="act">ALISTAR KIT</span>
-              </div>
-              <div class="alert-row red">
-                <span class="lvl"><span class="alert-dot"></span> ROJO</span>
-                <span class="msg">¡Evacúe inmediatamente!</span>
-                <span class="act">SALIR YA</span>
+          <div class="p2-right" aria-hidden="true"></div>
+
+        </section>
+
+        <!-- =====================================================
+             SLIDE 3 — Innovación Social e Inclusión
+        ====================================================== -->
+        <section class="slide panel" id="panel-3" data-title="INCLUSIÓN SOCIAL">
+
+          <div class="p3-left">
+            <p class="eyebrow">02 — Innovación Social · 1:20 — 2:20</p>
+
+            <div class="p3-block p3-block-access">
+              <h3 class="p3-block-title">Inclusión Sin Barreras</h3>
+              <p class="body-text" style="margin:8px 0 14px; max-width:36ch;">
+                El 26,1% de Dibulla tiene rezagos de alfabetización y brechas
+                digitales. GeoSAT no deja a nadie por fuera.
+              </p>
+              <div class="access-features">
+                <div class="access-item ai1"><span class="ai-icon">◈</span><span>Pictogramas universales</span></div>
+                <div class="access-item ai2"><span class="ai-icon">◎</span><span>Soporte multi-idioma</span></div>
+                <div class="access-item ai3"><span class="ai-icon">◉</span><span>Modo offline · IndexedDB</span></div>
+                <div class="access-item ai4"><span class="ai-icon">◐</span><span>Dominio mínimo tecnológico</span></div>
               </div>
             </div>
 
-            <p class="mono" style="margin-top:24px; opacity:.45; max-width:48ch;">
-              WHATSAPP · FACEBOOK · INSTAGRAM · SMS · CELL BROADCAST · PERIFONEO COMUNITARIO
-            </p>
-          </div>
-        </section>
-
-        <!-- PANEL 6 — Incentivos -->
-        <section class="slide panel" id="panel-6" data-title="INCENTIVOS">
-          <div>
-            <p class="eyebrow">05 — Sostenibilidad social</p>
-            <h2 class="display" style="margin-top:18px;">
-              Fotos<br/>por <em>anuncios</em>.
-            </h2>
-
-            <p class="quote">
-              "El vigía que envía sus fotos<br/>
-              <em>gana visibilidad para su negocio</em>."
-            </p>
-
-            <p class="body-text">
-              El monitoreo no depende de un contrato municipal: depende del
-              mismo tejido económico costero. Los comerciantes locales
-              publican sus anuncios dentro del ecosistema digital del SAT
-              —WhatsApp, Facebook, Instagram— a cambio de fotografías
-              periódicas de las estaciones físicas. Las imágenes pasan por
-              un filtro híbrido (IA + revisión manual) antes de validar
-              el cupo publicitario.
-            </p>
+            <div class="p3-block p3-block-incentive">
+              <h3 class="p3-block-title">Fotos por <em>Anuncios</em></h3>
+              <p class="body-text" style="margin:8px 0; max-width:36ch;">
+                El vigía captura, la IA valida al instante. La comunidad
+                gana visibilidad comercial en WhatsApp, Facebook e Instagram.
+              </p>
+              <blockquote class="p3-quote">
+                "Convertimos el monitoreo en una<br/>
+                <em>vitrina económica</em> para el territorio."
+              </blockquote>
+            </div>
           </div>
 
-          <div>
-            <p class="mono" style="opacity:.55; text-align:center;">CICLO DE INCENTIVOS</p>
+          <div class="p3-right">
+            <p class="mono" style="opacity:.55; margin-bottom:16px; text-align:center;">MODELO DE INCENTIVOS</p>
+
+            <div class="phones-row">
+              <div class="phone-card">
+                <div class="phone-shell">
+                  <div class="phone-screen screen-wsp">
+                    <div class="wsp-header"><span class="wsp-dot"></span> GeoSAT Costa</div>
+                    <div class="wsp-bubble out">📸 Foto enviada</div>
+                    <div class="wsp-bubble in">✓ Validada · +1 cupo</div>
+                    <div class="wsp-bubble out">📍 Estación 3</div>
+                  </div>
+                </div>
+                <span class="phone-label">Captura</span>
+              </div>
+
+              <div class="phone-card">
+                <div class="phone-shell">
+                  <div class="phone-screen screen-app">
+                    <div class="app-icon-grid">
+                      <span class="app-ico">🏠</span><span class="app-ico">🌊</span>
+                      <span class="app-ico">📍</span><span class="app-ico">📷</span>
+                      <span class="app-ico">🔔</span><span class="app-ico">👥</span>
+                    </div>
+                    <div class="app-alert-bar">⚠ Alerta Verde</div>
+                  </div>
+                </div>
+                <span class="phone-label">Interfaz</span>
+              </div>
+
+              <div class="phone-card">
+                <div class="phone-shell">
+                  <div class="phone-screen screen-fb">
+                    <div class="fb-post">
+                      <div class="fb-avatar"></div>
+                      <div class="fb-text"><strong>Tienda La Costa</strong><p>¡Gran venta!</p></div>
+                    </div>
+                    <div class="fb-post">
+                      <div class="fb-avatar" style="background:#2a8aaa;"></div>
+                      <div class="fb-text"><strong>Pescadería Mar</strong><p>Mariscos frescos 🦐</p></div>
+                    </div>
+                  </div>
+                </div>
+                <span class="phone-label">Anuncios</span>
+              </div>
+            </div>
+
             <div class="cycle-diagram">
               <svg viewBox="-100 -100 200 200" style="width:100%; height:100%;" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
                     <path d="M0,0 L10,5 L0,10 z" fill="#2a8aaa"/>
                   </marker>
                 </defs>
-                <circle cx="0" cy="0" r="72" fill="none" stroke="rgba(30,80,120,.2)" stroke-width="0.5" stroke-dasharray="2 3"/>
-                <g font-family="JetBrains Mono" font-size="6" fill="#1a2a3a" text-anchor="middle">
-                  <g transform="translate(0 -72)">
-                    <circle r="20" fill="#e8f4fa" stroke="#2a8aaa" stroke-width="1.5"/>
-                    <text dy="-2" fill="#1a2a3a">VIGÍA</text>
-                    <text dy="6" font-size="4" fill="#2a8aaa">CAPTURA</text>
+                <circle cx="0" cy="0" r="68" fill="none" stroke="rgba(30,80,120,.15)" stroke-width="0.5" stroke-dasharray="2 3"/>
+                <g font-family="JetBrains Mono" font-size="5.5" text-anchor="middle">
+                  <g transform="translate(0 -68)">
+                    <circle r="18" fill="#e8f4fa" stroke="#2a8aaa" stroke-width="1.2"/>
+                    <text dy="-1.5" fill="#1a2a3a">VIGÍA</text><text dy="6" font-size="4" fill="#2a8aaa">CAPTURA</text>
                   </g>
-                  <g transform="translate(72 0)">
-                    <circle r="20" fill="#fdf8ee" stroke="#8a7040" stroke-width="1.5"/>
-                    <text dy="-2" fill="#1a2a3a">CLOUD</text>
-                    <text dy="6" font-size="4" fill="#8a7040">PROCESA</text>
+                  <g transform="translate(68 0)">
+                    <circle r="18" fill="#fdf8ee" stroke="#8a7040" stroke-width="1.2"/>
+                    <text dy="-1.5" fill="#1a2a3a">CLOUD</text><text dy="6" font-size="4" fill="#8a7040">VALIDA</text>
                   </g>
-                  <g transform="translate(0 72)">
-                    <circle r="20" fill="#fff3ee" stroke="#c05030" stroke-width="1.5"/>
-                    <text dy="-2" fill="#1a2a3a">COMERCIO</text>
-                    <text dy="6" font-size="4" fill="#c05030">ANUNCIA</text>
+                  <g transform="translate(0 68)">
+                    <circle r="18" fill="#fff3ee" stroke="#c05030" stroke-width="1.2"/>
+                    <text dy="-1.5" fill="#1a2a3a">COMERCIO</text><text dy="6" font-size="4" fill="#c05030">ANUNCIA</text>
                   </g>
-                  <g transform="translate(-72 0)">
-                    <circle r="20" fill="#eef8f2" stroke="#2a8060" stroke-width="1.5"/>
-                    <text dy="-2" fill="#1a2a3a">COMUNIDAD</text>
-                    <text dy="6" font-size="4" fill="#2a8060">USA SAT</text>
+                  <g transform="translate(-68 0)">
+                    <circle r="18" fill="#eef8f2" stroke="#2a8060" stroke-width="1.2"/>
+                    <text dy="-1.5" fill="#1a2a3a">COMUNIDAD</text><text dy="6" font-size="4" fill="#2a8060">USA SAT</text>
                   </g>
                 </g>
-                <g fill="none" stroke="#2a8aaa" stroke-width="0.8" opacity="0.7">
-                  <path d="M 18 -68 A 72 72 0 0 1 68 -18" marker-end="url(#arrow)"/>
-                  <path d="M 68 18 A 72 72 0 0 1 18 68" marker-end="url(#arrow)"/>
-                  <path d="M -18 68 A 72 72 0 0 1 -68 18" marker-end="url(#arrow)"/>
-                  <path d="M -68 -18 A 72 72 0 0 1 -18 -68" marker-end="url(#arrow)"/>
+                <g fill="none" stroke="#2a8aaa" stroke-width="0.8" opacity="0.65">
+                  <path d="M 16 -64 A 68 68 0 0 1 64 -16" marker-end="url(#arw)"/>
+                  <path d="M 64 16 A 68 68 0 0 1 16 64" marker-end="url(#arw)"/>
+                  <path d="M -16 64 A 68 68 0 0 1 -64 16" marker-end="url(#arw)"/>
+                  <path d="M -64 -16 A 68 68 0 0 1 -16 -64" marker-end="url(#arw)"/>
                 </g>
-                <circle cx="0" cy="0" r="14" fill="rgba(42,138,170,.1)" stroke="rgba(42,138,170,.4)" stroke-width="1"/>
-                <text x="0" y="-2" font-family="Instrument Serif" font-size="9" fill="#1a5080" text-anchor="middle">GeoSAT</text>
-                <text x="0" y="6" font-family="JetBrains Mono" font-size="3.5" fill="#4a6070" text-anchor="middle" letter-spacing="0.5">PLATAFORMA</text>
+                <text x="0" y="2" font-family="Instrument Serif" font-size="8" fill="#1a5080" text-anchor="middle">GeoSAT</text>
               </svg>
             </div>
+
           </div>
+
         </section>
 
-        <!-- PANEL 7 — Presupuesto -->
-        <section class="slide panel" id="panel-7" data-title="PRESUPUESTO">
+        <!-- =====================================================
+             SLIDE 4 — Maestría Técnica: 5-stage color-coded flow
+        ====================================================== -->
+        <section class="slide panel" id="panel-4" data-title="ARQUITECTURA" data-stage="0">
+
+          <header class="p4-header">
+            <p class="eyebrow">03 — Flujo de datos · 2:20 — 3:40</p>
+            <h2 class="display" style="margin-top:10px;">Del dato a la <em>alerta</em>.</h2>
+          </header>
+
+          <div class="flow-stages">
+
+            <div class="stage-card" data-stage-idx="0">
+              <div class="stage-num">01</div>
+              <div class="stage-name">Captación</div>
+              <div class="stage-nodes">
+                <span>📷 Fotos comunitarias</span>
+                <span>🛰 Sentinel-2 · Landsat</span>
+                <span>🌊 Datos de mareas</span>
+              </div>
+            </div>
+
+            <div class="stage-connector"><span>›</span></div>
+
+            <div class="stage-card" data-stage-idx="1">
+              <div class="stage-num">02</div>
+              <div class="stage-name">Procesamiento</div>
+              <div class="stage-nodes">
+                <span>⚙ Filtro de calidad</span>
+                <span>📐 CoastSeg · cm</span>
+                <span>💾 BD Geoespacial</span>
+              </div>
+            </div>
+
+            <div class="stage-connector"><span>›</span></div>
+
+            <div class="stage-card" data-stage-idx="2">
+              <div class="stage-num">03</div>
+              <div class="stage-name">Validación</div>
+              <div class="stage-nodes">
+                <span>✓ GEE · Sentinel</span>
+                <span>🔍 Firmas espectrales</span>
+                <span>0️⃣ Cero falsos positivos</span>
+              </div>
+            </div>
+
+            <div class="stage-connector"><span>›</span></div>
+
+            <div class="stage-card" data-stage-idx="3">
+              <div class="stage-num">04</div>
+              <div class="stage-name">Clasificación</div>
+              <div class="stage-nodes">
+                <span>📊 Tasa de erosión</span>
+                <span>⚖ Umbral de riesgo</span>
+                <span>🚦 Nivel de alerta</span>
+              </div>
+            </div>
+
+            <div class="stage-connector"><span>›</span></div>
+
+            <div class="stage-card" data-stage-idx="4">
+              <div class="stage-num">05</div>
+              <div class="stage-name">Distribución</div>
+              <div class="stage-nodes">
+                <span>📱 SMS · Cell Broadcast</span>
+                <span>💬 WhatsApp · FB · IG</span>
+                <span>🏪 Feed comercial</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="alert-strip">
+            <div class="as-item green"><span class="alert-dot"></span> Verde · Monitoreo</div>
+            <div class="as-item yellow"><span class="alert-dot"></span> Amarillo · Preparar</div>
+            <div class="as-item orange"><span class="alert-dot"></span> Naranja · Alistar</div>
+            <div class="as-item red"><span class="alert-dot"></span> Rojo · ¡Evacuar!</div>
+          </div>
+
+        </section>
+
+        <!-- =====================================================
+             SLIDE 5 — Viabilidad Económica e Impacto
+        ====================================================== -->
+        <section class="slide panel" id="panel-5" data-title="VIABILIDAD">
+
           <header>
-            <p class="eyebrow">06 — Viabilidad económica</p>
-            <h2 class="display" style="margin-top:18px; font-size:clamp(48px,5vw,84px);">
+            <p class="eyebrow">04 — Viabilidad Económica · 3:40 — 4:05</p>
+            <h2 class="display" style="margin-top:14px;">
               Menos que un<br/><em>salario mínimo</em>.
             </h2>
           </header>
 
-          <div class="budget-board">
-            <div class="budget-hero">
-              <div>
-                <span class="currency">COP · Año 1 total</span>
-                <div class="big">$1.610.000</div>
-              </div>
-              <div>
-                <p class="body-text" style="font-size:14px;">
-                  Implementación completa más operación anual, financiable con
-                  fondos municipales, regalías, cooperación internacional o los
-                  USD 2.000 de Google for Startups.
-                </p>
-              </div>
-            </div>
+          <div class="viability-phases">
 
-            <div class="budget-side">
-              <h4>Implementación</h4>
-              <div class="mid">$1.21M</div>
-              <ul>
+            <div class="phase phase-1">
+              <div class="phase-label">FASE 1 · PROTOTIPO</div>
+              <div class="phase-cost">$1.610.000</div>
+              <div class="phase-sub">COP · AÑO 1 · TOTAL</div>
+              <div class="phase-badges">
+                <span class="tech-badge">Google Cloud Free Tier</span>
+                <span class="tech-badge">Gemini API</span>
+              </div>
+              <ul class="cost-list">
                 <li><span>5 estaciones de acero</span><span>$600K</span></li>
                 <li><span>Capacitación 12h</span><span>$300K</span></li>
                 <li><span>Sensibilización</span><span>$200K</span></li>
                 <li><span>Imprevistos 10%</span><span>$110K</span></li>
-                <li><span>Cloud · Gemini API</span><span>$0</span></li>
+                <li><span>Cómputo IA · Cloud</span><span class="zero">$0</span></li>
               </ul>
             </div>
 
-            <div class="budget-side">
-              <h4>Operación anual</h4>
-              <div class="mid">$400K</div>
-              <ul>
-                <li><span>Pedagogía recurrente</span><span>$300K</span></li>
-                <li><span>Mantenimiento físico</span><span>$100K</span></li>
-                <li><span>Cómputo IA</span><span>$0</span></li>
-                <li><span>Almacenamiento</span><span>$0</span></li>
-                <li><span>API WhatsApp OSS</span><span>$0</span></li>
-              </ul>
+            <div class="phase-divider"></div>
+
+            <div class="phase phase-2">
+              <div class="phase-label">FASE 2 · ESCALA</div>
+              <div class="phase-icon-big">🚀</div>
+              <div class="phase-strategy">Google Nonprofits</div>
+              <p class="body-text" style="margin-top:10px; max-width:26ch;">
+                Subsidios robustos de infraestructura cloud para procesar
+                miles de imágenes sin inflar el presupuesto.
+              </p>
+              <div class="scale-indicator">
+                <span class="si-from">Dibulla</span>
+                <span class="si-arrow">→</span>
+                <span class="si-to">Todo el litoral colombiano</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="per-capita-block">
+            <div class="per-capita-num">$32</div>
+            <div class="per-capita-desc">
+              <span class="mono">COP · POR HABITANTE · AÑO</span><br/>
+              Una inversión mínima para un impacto masivo.
             </div>
           </div>
 
-          <p class="budget-footnote">
-            EQUIVALE A · <span style="color:var(--tide)">$32 COP / HABITANTE / AÑO</span>
-            &nbsp;·&nbsp; FUENTES: HOMECENTER · UNGRD · GHDCO · GOOGLE CLOUD FREE TIER · EL UNIVERSAL CARTAGENA
-          </p>
         </section>
 
-        <!-- PANEL 8 — Cierre -->
-        <section class="slide panel" id="panel-8" data-title="CIERRE">
+        <!-- =====================================================
+             SLIDE 6 — Conclusión y Cierre
+        ====================================================== -->
+        <section class="slide panel" id="panel-6" data-title="CIERRE">
+
           <div class="closing-top">
-            <p class="eyebrow">07 — Equipo GeoSAT</p>
+            <p class="eyebrow">05 — Conclusión · 4:05 — 5:00</p>
           </div>
 
           <div class="closing-mid">
             <h2 class="display">
-              Una alerta<br/>que sale del <em>territorio</em>,<br/>no que llega a él.
+              El puente definitivo<br/>entre la ciencia y<br/>la <em>gente</em>.
             </h2>
-            <p class="lede" style="margin-top:28px;">
-              GeoSAT no impone tecnología; se entreteje con la economía,
-              el lenguaje y los liderazgos de la costa. Por eso puede
-              replicarse en el Golfo de Morrosquillo, en Puerto Colombia
-              o en Tumaco sin cambiar su núcleo.
+            <p class="lede" style="margin-top:20px; max-width:44ch;">
+              GeoSAT transforma la preocupación por el mar en una oportunidad
+              económica diaria. Arquitectura modular: empezamos en Dibulla,
+              escalamos a todo el litoral colombiano.
             </p>
+            <div class="closing-scale">
+              <div class="cs-item cs1">Dibulla</div>
+              <span class="cs-arrow">→</span>
+              <div class="cs-item cs2">Santa Marta</div>
+              <span class="cs-arrow">→</span>
+              <div class="cs-item cs3">Barranquilla</div>
+              <span class="cs-arrow">→</span>
+              <div class="cs-item cs4">Cartagena</div>
+              <span class="cs-arrow">→</span>
+              <div class="cs-item cs5">Morrosquillo</div>
+              <span class="cs-arrow">→</span>
+              <div class="cs-item cs6">Urabá</div>
+            </div>
           </div>
 
           <div class="closing-bottom">
@@ -516,18 +439,17 @@
                 <span class="name">Camilo Alejandro Lagos Malaver</span>
                 <span class="meta-tag">UN COLOMBIA · ING. SISTEMAS Y COMPUTACIÓN · 7° SEM</span>
               </div>
-              <div class="member" style="margin-top:12px;">
+              <div class="member" style="margin-top:10px;">
                 <span class="meta-tag">YCHAPARRO@UNAL.EDU.CO</span>
               </div>
             </div>
-
             <div class="signoff">
               <strong>GEOSAT · HACKATÓN 2026</strong>
-              DIBULLA · LA GUAJIRA<br/>
-              11 / MAY / 2026<br/>
+              DIBULLA · LA GUAJIRA<br/>17 / MAY / 2026<br/>
               UNIVERSIDAD NACIONAL DE COLOMBIA
             </div>
           </div>
+
         </section>
 
       </div>
