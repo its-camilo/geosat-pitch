@@ -636,7 +636,13 @@ h2.display {
   border-radius: var(--glass-radius-md);
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.35s ease, background 0.35s ease;
+  transition:
+    opacity 0.75s cubic-bezier(0.33, 1, 0.68, 1),
+    transform 0.75s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.75s cubic-bezier(0.33, 1, 0.68, 1),
+    background 0.75s cubic-bezier(0.33, 1, 0.68, 1),
+    border-color 0.75s cubic-bezier(0.33, 1, 0.68, 1),
+    border 0.75s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 /* Inactivas (opacas): franja izquierda amarilla institucional */
@@ -647,13 +653,8 @@ h2.display {
 /* Reveal animation — all come in on panel-active */
 .panel-active .stage-card {
   opacity: 0.35;
-  transform: none;
+  transform: translateY(0) scale(0.988);
 }
-.panel-active .stage-card[data-stage-idx="0"] { transition-delay: 0.10s; }
-.panel-active .stage-card[data-stage-idx="1"] { transition-delay: 0.22s; }
-.panel-active .stage-card[data-stage-idx="2"] { transition-delay: 0.34s; }
-.panel-active .stage-card[data-stage-idx="3"] { transition-delay: 0.46s; }
-.panel-active .stage-card[data-stage-idx="4"] { transition-delay: 0.58s; }
 
 /* Active stage cycling focus (JS sets data-stage on #panel-4) */
 #panel-4[data-stage="0"] .stage-card[data-stage-idx="0"],
@@ -662,6 +663,7 @@ h2.display {
 #panel-4[data-stage="3"] .stage-card[data-stage-idx="3"],
 #panel-4[data-stage="4"] .stage-card[data-stage-idx="4"] {
   opacity: 1;
+  transform: translateY(0) scale(1);
   background: var(--glass-fill-strong);
   border: 1px solid rgba(255, 255, 255, 0.65);
   border-left: 3px solid var(--ungrd-blue);
@@ -796,6 +798,19 @@ h2.display {
 .phase-1 {
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.28) 55%, rgba(255, 255, 255, 0.2) 100%);
 }
+
+/* Una sola columna: etiqueta, monto, pills y lista comparten el mismo borde izquierdo */
+#panel-5 .phase-1-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  flex: 1;
+  align-items: stretch;
+}
+
 .phase-2 {
   background: var(--glass-fill-dim);
 }
@@ -830,6 +845,16 @@ h2.display {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+}
+/* Fase 1: pills en columna, alineadas en el eje vertical del bloque */
+#panel-5 .phase-1-copy .phase-badges {
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
 }
 .tech-badge {
   font-family: var(--font-sans);
@@ -842,6 +867,9 @@ h2.display {
   letter-spacing: 0.05em;
   background: rgba(255, 205, 0, 0.24);
   border-radius: var(--glass-radius-pill);
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.15;
 }
 .cost-list {
   list-style: none;
@@ -934,6 +962,12 @@ h2.display {
 ================================================================= */
 #panel-6 { grid-template-rows: auto 1fr auto; }
 #panel-6 .closing-top { align-self: start; }
+/* Misma caja tipográfica que #progress-bar .progress-label (06 / 06 · CIERRE) */
+#panel-6 .closing-top .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
 #panel-6 .closing-mid { align-self: center; max-width: 62%; }
 #panel-6 .closing-bottom {
   align-self: end;
@@ -968,11 +1002,7 @@ h2.display {
 }
 .panel-active .cs-item { opacity: 1; transform: translateX(0); }
 .panel-active .cs1 { transition-delay: 0.3s; border-color: var(--tide); color: var(--tide); }
-.panel-active .cs2 { transition-delay: 0.55s; }
-.panel-active .cs3 { transition-delay: 0.8s; }
-.panel-active .cs4 { transition-delay: 1.05s; }
-.panel-active .cs5 { transition-delay: 1.3s; }
-.panel-active .cs6 { transition-delay: 1.55s; }
+.panel-active .cs2 { transition-delay: 0.55s; border-color: var(--tide); color: var(--tide); }
 .cs-arrow { color: var(--text-muted); opacity: 0.35; font-size: 13px; }
 
 .team-list { display: flex; flex-direction: column; gap: 10px; }

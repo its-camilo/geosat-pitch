@@ -37,7 +37,7 @@ function startStageCycling() {
   stageInterval = setInterval(() => {
     currentStage = (currentStage + 1) % 5
     p4.dataset.stage = currentStage
-  }, 2200)
+  }, 3000)
 }
 
 function stopStageCycling() {

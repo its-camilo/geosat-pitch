@@ -368,50 +368,46 @@ const streamParticles = (() => {
 })();
 
 // =============================================================
-// PANEL 4 — Economic: coin stacks + community sphere cluster
+// PANEL 4 — Viabilidad: solo pilas de monedas (sin partículas sueltas)
 // =============================================================
 const p4 = new THREE.Group();
 p4.position.x = 4 * SCENE_SPACING;
 scene.add(p4);
 
-const makeCoin = (x, y, z, n, col) => {
+/** Pilas tipo “torta” de monedas: borde ligeramente biselado + metal */
+function makeCoinStack(x, y, z, discCount, hex) {
   const g = new THREE.Group();
-  for (let i = 0; i < n; i++) {
-    const c = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.38, 0.38, 0.08, 28),
-      new THREE.MeshStandardMaterial({ color: col, metalness: 0.75, roughness: 0.25, emissive: col, emissiveIntensity: 0.07 })
-    );
-    c.position.y = i * 0.09;
-    g.add(c);
+  const col = new THREE.Color(hex);
+  const mat = new THREE.MeshStandardMaterial({
+    color: col,
+    metalness: 0.9,
+    roughness: 0.15,
+    emissive: col,
+    emissiveIntensity: 0.065,
+  });
+  g.userData.coinMaterial = mat;
+  const h = 0.046;
+  const sep = 0.0025;
+  for (let i = 0; i < discCount; i++) {
+    const taper = i * 0.0018;
+    const rBot = 0.39 - taper;
+    const rTop = Math.max(0.3, rBot - 0.032);
+    const disc = new THREE.Mesh(new THREE.CylinderGeometry(rTop, rBot, h, 40, 1), mat);
+    disc.position.y = i * (h + sep);
+    disc.rotation.y = i * 0.38;
+    disc.userData.stackPhase = i * 0.21;
+    disc.userData.baseY = disc.position.y;
+    g.add(disc);
   }
   g.position.set(x, y, z);
+  g.userData.basePos = new THREE.Vector3(x, y, z);
   return g;
-};
-const coinA = makeCoin(-1.5, -1.4, 0, 9, 0x213362);
-const coinB = makeCoin(0, -1.4, 0.5, 5, 0xffcd00);
-const coinC = makeCoin(1.5, -1.4, -0.3, 3, 0x575756);
-p4.add(coinA, coinB, coinC);
+}
 
-// Community spheres (before/after visual): two clusters
-const makeCluster = (cx, col, n) => {
-  const g = new THREE.Group();
-  for (let i = 0; i < n; i++) {
-    const s = new THREE.Mesh(
-      new THREE.SphereGeometry(0.18, 10, 10),
-      new THREE.MeshStandardMaterial({ color: col, emissive: col, emissiveIntensity: 0.2 })
-    );
-    s.position.set(
-      cx + (Math.random() - 0.5) * 2.2,
-      (Math.random() - 0.5) * 1.4,
-      (Math.random() - 0.5) * 1.2
-    );
-    g.add(s);
-  }
-  return g;
-};
-const communityBefore = makeCluster(-4, 0xffcd00, 12); // en alerta: amarillo institucional
-const communityAfter  = makeCluster( 4, 0x213362, 12); // coordinado: azul UNGRD
-p4.add(communityBefore, communityAfter);
+const coinA = makeCoinStack(-1.05, -1.32, 0.18, 12, 0x213362);
+const coinB = makeCoinStack(0.52, -1.36, 0.12, 8, 0xffcd00);
+const coinC = makeCoinStack(1.82, -1.34, -0.08, 5, 0x575756);
+p4.add(coinA, coinB, coinC);
 
 // =============================================================
 // PANEL 5 — Closing: Colombia Caribbean coast network
@@ -564,13 +560,26 @@ function animate() {
   }
   sp.needsUpdate = true;
 
-  // --- Panel 4: coins float, clusters breathe ---
-  [coinA, coinB, coinC].forEach((c, i) => {
-    c.position.y = -1.4 + Math.sin(t * 0.5 + i * 1.3) * 0.07;
-    c.rotation.y += dt * (0.18 + i * 0.06);
+  // --- Viabilidad (p4): solo pilas de monedas, lectura más clara ---
+  const pulse = 0.05 + Math.sin(t * 1.1) * 0.035;
+  [coinA, coinB, coinC].forEach((stack, si) => {
+    const b = stack.userData.basePos;
+    stack.position.set(
+      b.x + Math.cos(t * 0.28 + si * 1.05) * 0.06,
+      b.y + Math.sin(t * 0.45 + si * 1.1) * 0.06,
+      b.z + Math.sin(t * 0.2 + si * 0.65) * 0.05
+    );
+    stack.rotation.y += dt * (0.12 + si * 0.04);
+    stack.rotation.z = Math.sin(t * 0.4 + si * 0.85) * 0.05;
+    const m = stack.userData.coinMaterial;
+    if (m) m.emissiveIntensity = 0.055 + pulse + si * 0.012;
+    stack.children.forEach((disc) => {
+      if (disc.userData.stackPhase === undefined) return;
+      const ph = disc.userData.stackPhase;
+      disc.rotation.x = Math.sin(t * 1.05 + ph) * 0.028;
+      disc.position.y = disc.userData.baseY + Math.sin(t * 0.9 + ph + si) * 0.012;
+    });
   });
-  communityBefore.children.forEach((s, i) => { s.position.y += Math.sin(t * 0.8 + i) * dt * 0.12; });
-  communityAfter.children.forEach((s, i)  => { s.position.y += Math.sin(t * 0.8 + i + 2) * dt * 0.12; });
 
   // --- Panel 5: Colombia coast wave propagation ---
   waveT = (waveT + dt * 0.09) % 1.0;
