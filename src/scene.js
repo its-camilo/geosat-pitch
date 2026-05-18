@@ -413,16 +413,6 @@ const communityBefore = makeCluster(-4, 0xffcd00, 12); // en alerta: amarillo in
 const communityAfter  = makeCluster( 4, 0x213362, 12); // coordinado: azul UNGRD
 p4.add(communityBefore, communityAfter);
 
-// Arrow between clusters
-const arrowLine = new THREE.Line(
-  new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(-2.8, 0, 0), new THREE.Vector3(2.8, 0, 0)
-  ]),
-  new THREE.LineDashedMaterial({ color: 0x213362, dashSize: 0.18, gapSize: 0.1, transparent: true, opacity: 0.45 })
-);
-arrowLine.computeLineDistances();
-p4.add(arrowLine);
-
 // =============================================================
 // PANEL 5 — Closing: Colombia Caribbean coast network
 // =============================================================
