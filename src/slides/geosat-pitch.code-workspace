@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../Downloads/Pitch hackathon"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501
+	}
+}
