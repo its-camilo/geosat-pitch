@@ -7,10 +7,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 const scrollContainer  = document.querySelector('.scroll-container')
 const horizontalWrapper = document.querySelector('.horizontal-wrapper')
-const progressFill     = document.getElementById('progressFill')
 const currentSection   = document.getElementById('currentSection')
 const currentTitle     = document.getElementById('currentTitle')
-const dots             = document.querySelectorAll('#dots button')
 const panels           = document.querySelectorAll('.slide.panel')
 
 function syncViewportWidth() {
@@ -56,11 +54,14 @@ function activatePanel(idx) {
 }
 
 function updateChrome(idx, progress) {
-  if (progressFill) progressFill.style.width = (progress * 100).toFixed(2) + '%'
+  const progressBar = document.getElementById('progress-bar')
+  if (progressBar) {
+    const pct = Math.min(100, Math.max(0, progress * 100))
+    progressBar.style.setProperty('--flag-reveal', `${pct.toFixed(2)}%`)
+  }
   if (currentSection) currentSection.textContent = String(idx + 1).padStart(2, '0')
   const panel = panels[idx]
   if (currentTitle && panel) currentTitle.textContent = panel.dataset.title || ''
-  dots.forEach((d, i) => d.classList.toggle('active', i === idx))
   activatePanel(idx)
 }
 
@@ -103,17 +104,6 @@ function initHorizontalScroll() {
 
   pinScrollTrigger = tween.scrollTrigger ?? null
 }
-
-// Nav dots
-dots.forEach(d => {
-  d.addEventListener('click', () => {
-    const idx = parseInt(d.dataset.idx, 10)
-    const n   = getSlideCount()
-    if (n <= 1) return
-    const max = document.body.scrollHeight - window.innerHeight
-    window.scrollTo({ top: (idx / (n - 1)) * max, behavior: 'smooth' })
-  })
-})
 
 // Keyboard navigation
 window.addEventListener('keydown', e => {

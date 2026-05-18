@@ -12,11 +12,11 @@ scene.fog = new THREE.FogExp2(0xffffff, 0.016);
 const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 200);
 camera.position.set(0, 0.5, 14);
 
-scene.add(new THREE.AmbientLight(0x9ab8d0, 0.55));
+scene.add(new THREE.AmbientLight(0xc5cedd, 0.55));
 const key = new THREE.DirectionalLight(0xffffff, 0.8);
 key.position.set(6, 8, 7);
 scene.add(key);
-const rim = new THREE.DirectionalLight(0x2a8aaa, 0.45);
+const rim = new THREE.DirectionalLight(0x213362, 0.45);
 rim.position.set(-8, 2, -4);
 scene.add(rim);
 
@@ -34,9 +34,9 @@ const bgParticles = (() => {
     pos[i*3+1] = (Math.random() - 0.5) * 50;
     pos[i*3+2] = (Math.random() - 0.5) * 28 - 6;
     const t = Math.random();
-    col[i*3]   = 0.15 + t * 0.2;
-    col[i*3+1] = 0.4  + t * 0.25;
-    col[i*3+2] = 0.55 + t * 0.3;
+    col[i*3]   = 0.12 + t * 0.15;
+    col[i*3+1] = 0.22 + t * 0.2;
+    col[i*3+2] = 0.38 + t * 0.25;
   }
   g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
   g.setAttribute('color',    new THREE.BufferAttribute(col, 3));
@@ -72,7 +72,7 @@ for (let i = 0; i < tPos.count; i++) {
 tGeo.computeVertexNormals();
 
 const terrain = new THREE.Mesh(tGeo, new THREE.MeshStandardMaterial({
-  color: 0x1a5080, wireframe: true, transparent: true, opacity: 0.28,
+  color: 0x213362, wireframe: true, transparent: true, opacity: 0.28,
 }));
 terrain.rotation.x = -Math.PI / 2.5;
 terrain.position.set(3.5, -1.0, 0);
@@ -85,7 +85,7 @@ for (let xi = -terrainW/2; xi <= terrainW/2; xi += 0.1) {
 }
 const coastEdge = new THREE.Line(
   new THREE.BufferGeometry().setFromPoints(coastPts),
-  new THREE.LineBasicMaterial({ color: 0xd4503a, transparent: true, opacity: 0.9 })
+  new THREE.LineBasicMaterial({ color: 0xffcd00, transparent: true, opacity: 0.9 })
 );
 coastEdge.rotation.x = -Math.PI / 2.5;
 coastEdge.position.set(3.5, -0.98, 0);
@@ -97,7 +97,7 @@ for (let i = 0; i < 5; i++) {
   const yi = -1.2 + Math.sin(xi * 0.7) * 0.5 + Math.sin(xi * 2.1) * 0.18;
   const m = new THREE.Mesh(
     new THREE.SphereGeometry(0.07, 10, 10),
-    new THREE.MeshBasicMaterial({ color: 0xd4503a })
+    new THREE.MeshBasicMaterial({ color: 0xffcd00 })
   );
   const w = new THREE.Group();
   w.rotation.x = -Math.PI / 2.5;
@@ -110,7 +110,7 @@ for (let i = 0; i < 5; i++) {
 // Scanning beam (animated plane sweeping over terrain)
 const scanPlane = new THREE.Mesh(
   new THREE.PlaneGeometry(0.04, terrainH, 1, 1),
-  new THREE.MeshBasicMaterial({ color: 0x2a8aaa, transparent: true, opacity: 0.55, side: THREE.DoubleSide })
+  new THREE.MeshBasicMaterial({ color: 0x213362, transparent: true, opacity: 0.55, side: THREE.DoubleSide })
 );
 scanPlane.rotation.x = -Math.PI / 2.5;
 scanPlane.position.set(3.5, -0.96, 0.01);
@@ -124,14 +124,14 @@ p1.position.x = SCENE_SPACING;
 scene.add(p1);
 
 // Phone body (left side)
-const phoneMat = new THREE.MeshStandardMaterial({ color: 0x1a2a3a, metalness: 0.7, roughness: 0.3 });
+const phoneMat = new THREE.MeshStandardMaterial({ color: 0x213362, metalness: 0.7, roughness: 0.3 });
 const phoneBody = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.4, 0.1), phoneMat);
 phoneBody.position.set(-4, 0.2, 0);
 phoneBody.rotation.y = Math.PI / 8;
 p1.add(phoneBody);
 const phoneScreen = new THREE.Mesh(
   new THREE.PlaneGeometry(0.58, 1.1),
-  new THREE.MeshBasicMaterial({ color: 0x1a5080, transparent: true, opacity: 0.85 })
+  new THREE.MeshBasicMaterial({ color: 0x213362, transparent: true, opacity: 0.85 })
 );
 phoneScreen.position.set(-4.015 + 0.035, 0.2, 0.056);
 phoneScreen.rotation.y = Math.PI / 8;
@@ -146,7 +146,7 @@ for (let i = 0; i < extractPos.count; i++) {
 }
 extractGeo.computeVertexNormals();
 const extractMesh = new THREE.Mesh(extractGeo, new THREE.MeshBasicMaterial({
-  color: 0x2a8aaa, wireframe: true, transparent: true, opacity: 0.35,
+  color: 0x213362, wireframe: true, transparent: true, opacity: 0.35,
 }));
 extractMesh.rotation.x = -Math.PI / 5;
 extractMesh.position.set(0, -0.2, 0);
@@ -159,7 +159,7 @@ for (let xi = -1.5; xi <= 1.5; xi += 0.05) {
 }
 const extractLine = new THREE.Line(
   new THREE.BufferGeometry().setFromPoints(extractLinePts),
-  new THREE.LineBasicMaterial({ color: 0xd4503a, transparent: true, opacity: 0.9 })
+  new THREE.LineBasicMaterial({ color: 0xffcd00, transparent: true, opacity: 0.9 })
 );
 extractLine.rotation.x = -Math.PI / 5;
 extractLine.position.set(0, -0.2, 0.01);
@@ -189,7 +189,7 @@ const flowLine1 = new THREE.Line(
   new THREE.BufferGeometry().setFromPoints([
     new THREE.Vector3(-3.5, 0, 0), new THREE.Vector3(-1.5, -0.2, 0)
   ]),
-  new THREE.LineDashedMaterial({ color: 0x2a8aaa, dashSize: 0.15, gapSize: 0.1, transparent: true, opacity: 0.45 })
+  new THREE.LineDashedMaterial({ color: 0x213362, dashSize: 0.15, gapSize: 0.1, transparent: true, opacity: 0.45 })
 );
 flowLine1.computeLineDistances();
 p1.add(flowLine1);
@@ -198,7 +198,7 @@ const flowLine2 = new THREE.Line(
   new THREE.BufferGeometry().setFromPoints([
     new THREE.Vector3(1.5, -0.2, 0), new THREE.Vector3(3.5, 1.2, -0.5)
   ]),
-  new THREE.LineDashedMaterial({ color: 0x2a8aaa, dashSize: 0.15, gapSize: 0.1, transparent: true, opacity: 0.45 })
+  new THREE.LineDashedMaterial({ color: 0x213362, dashSize: 0.15, gapSize: 0.1, transparent: true, opacity: 0.45 })
 );
 flowLine2.computeLineDistances();
 p1.add(flowLine2);
@@ -211,32 +211,73 @@ p2.position.x = 2 * SCENE_SPACING;
 scene.add(p2);
 
 const phonePositions = [-3.5, 0, 3.5];
-const phoneColors    = [0x1a3a1a, 0x1a2a3a, 0x1a1a3a];
-const screenColors   = [0x2a6a2a, 0x1a4080, 0x1a3a6a];
+const screenColors   = [0x2a4a6a, 0x213362, 0x575756];
 
 phonePositions.forEach((px, i) => {
   const ph = new THREE.Group();
   ph.position.set(px, 0, 0);
   ph.rotation.y = (i - 1) * -0.18;
 
+  const bodyColor = [0x3d4a5f, 0x4a4d52, 0x343e4f][i];
+
+  const bezel = new THREE.Mesh(
+    new THREE.BoxGeometry(0.99, 1.86, 0.125),
+    new THREE.MeshStandardMaterial({
+      color: 0x1a1f28,
+      metalness: 0.55,
+      roughness: 0.65,
+    })
+  );
+  bezel.position.set(0, 0, -0.008);
+  bezel.scale.set(1.02, 1.02, 0.92);
+  ph.add(bezel);
+
   const body = new THREE.Mesh(
-    new THREE.BoxGeometry(0.8, 1.55, 0.1),
-    new THREE.MeshStandardMaterial({ color: phoneColors[i], metalness: 0.7, roughness: 0.3 })
+    new THREE.BoxGeometry(0.95, 1.82, 0.12),
+    new THREE.MeshPhysicalMaterial({
+      color: bodyColor,
+      metalness: 0.82,
+      roughness: 0.38,
+      clearcoat: 0.22,
+      clearcoatRoughness: 0.55,
+    })
   );
   ph.add(body);
 
-  const screen = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.65, 1.3),
-    new THREE.MeshBasicMaterial({ color: screenColors[i], transparent: true, opacity: 0.8 })
-  );
-  screen.position.set(0, 0, 0.056);
+  const screenMat = new THREE.MeshPhysicalMaterial({
+    color: screenColors[i],
+    metalness: 0.15,
+    roughness: 0.25,
+    transmission: 0,
+    clearcoat: 0.4,
+    clearcoatRoughness: 0.2,
+    transparent: true,
+    opacity: 0.92,
+  });
+  const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.72, 1.42), screenMat);
+  screen.position.set(0, 0, 0.063);
   ph.add(screen);
+
+  const notch = new THREE.Mesh(
+    new THREE.BoxGeometry(0.22, 0.045, 0.02),
+    new THREE.MeshStandardMaterial({ color: 0x0a0c10, metalness: 0.3, roughness: 0.8 })
+  );
+  notch.position.set(0, 0.805, 0.068);
+  ph.add(notch);
+
+  const camBump = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.035, 0.035, 0.02, 16),
+    new THREE.MeshStandardMaterial({ color: 0x2a3038, metalness: 0.9, roughness: 0.35 })
+  );
+  camBump.rotation.x = Math.PI / 2;
+  camBump.position.set(0.38, 0.78, -0.055);
+  ph.add(camBump);
 
   // Notification bubble rising
   for (let b = 0; b < 2; b++) {
     const bubble = new THREE.Mesh(
       new THREE.SphereGeometry(0.06, 8, 8),
-      new THREE.MeshBasicMaterial({ color: [0x5fd6a3, 0x4ad6e8, 0xe8d5a8][i], transparent: true, opacity: 0.75 })
+      new THREE.MeshBasicMaterial({ color: [0xffcd00, 0x213362, 0xdadada][i], transparent: true, opacity: 0.75 })
     );
     bubble.position.set((Math.random() - 0.5) * 0.4, 0.9 + b * 0.35, 0.06);
     bubble.userData.startY = bubble.position.y;
@@ -256,7 +297,7 @@ p3.position.x = 3 * SCENE_SPACING;
 scene.add(p3);
 
 // 3 input nodes (left)
-const inputColors = [0x2a8aaa, 0xc9a86a, 0x2a8060];
+const inputColors = [0x213362, 0xffcd00, 0x575756];
 const inputNodes  = [];
 [-1.4, 0, 1.4].forEach((y, i) => {
   const n = new THREE.Mesh(
@@ -272,18 +313,18 @@ const inputNodes  = [];
 // Central cloud icosahedron
 const cloudNode = new THREE.Mesh(
   new THREE.IcosahedronGeometry(1.1, 1),
-  new THREE.MeshStandardMaterial({ color: 0x1a5080, emissive: 0x2a8aaa, emissiveIntensity: 0.28, flatShading: true, transparent: true, opacity: 0.92 })
+  new THREE.MeshStandardMaterial({ color: 0x213362, emissive: 0xffcd00, emissiveIntensity: 0.18, flatShading: true, transparent: true, opacity: 0.92 })
 );
 cloudNode.position.set(0, 0, 0);
 p3.add(cloudNode);
 
 p3.add(new THREE.Mesh(
   new THREE.IcosahedronGeometry(1.12, 1),
-  new THREE.MeshBasicMaterial({ color: 0x2a8aaa, wireframe: true, transparent: true, opacity: 0.28 })
+  new THREE.MeshBasicMaterial({ color: 0x213362, wireframe: true, transparent: true, opacity: 0.28 })
 ));
 
 // 3 output nodes (right)
-const outputColors = [0x5fd6a3, 0xd4503a, 0x2a8aaa];
+const outputColors = [0xffcd00, 0x575756, 0x213362];
 const outputNodes  = [];
 [-1.2, 0, 1.2].forEach((y, i) => {
   const n = new THREE.Mesh(
@@ -300,7 +341,7 @@ const outputNodes  = [];
 inputNodes.forEach(n => {
   const l = new THREE.Line(
     new THREE.BufferGeometry().setFromPoints([n.position.clone(), cloudNode.position.clone()]),
-    new THREE.LineBasicMaterial({ color: 0x2a8aaa, transparent: true, opacity: 0.2 })
+    new THREE.LineBasicMaterial({ color: 0x213362, transparent: true, opacity: 0.2 })
   );
   p3.add(l);
   n.userData.line = l;
@@ -320,7 +361,7 @@ const streamParticles = (() => {
   }
   g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
   g.userData.t = new Float32Array(N).map(() => Math.random());
-  const m = new THREE.PointsMaterial({ color: 0x2a8aaa, size: 0.06, transparent: true, opacity: 0.6 });
+  const m = new THREE.PointsMaterial({ color: 0x213362, size: 0.06, transparent: true, opacity: 0.6 });
   const p = new THREE.Points(g, m);
   p3.add(p);
   return p;
@@ -346,9 +387,9 @@ const makeCoin = (x, y, z, n, col) => {
   g.position.set(x, y, z);
   return g;
 };
-const coinA = makeCoin(-1.5, -1.4, 0, 9, 0x2a8aaa);
-const coinB = makeCoin(0, -1.4, 0.5, 5, 0xc9a86a);
-const coinC = makeCoin(1.5, -1.4, -0.3, 3, 0x8a7040);
+const coinA = makeCoin(-1.5, -1.4, 0, 9, 0x213362);
+const coinB = makeCoin(0, -1.4, 0.5, 5, 0xffcd00);
+const coinC = makeCoin(1.5, -1.4, -0.3, 3, 0x575756);
 p4.add(coinA, coinB, coinC);
 
 // Community spheres (before/after visual): two clusters
@@ -368,8 +409,8 @@ const makeCluster = (cx, col, n) => {
   }
   return g;
 };
-const communityBefore = makeCluster(-4, 0xd4503a, 12); // at-risk: coral
-const communityAfter  = makeCluster( 4, 0x2a8060, 12); // safe: green
+const communityBefore = makeCluster(-4, 0xffcd00, 12); // en alerta: amarillo institucional
+const communityAfter  = makeCluster( 4, 0x213362, 12); // coordinado: azul UNGRD
 p4.add(communityBefore, communityAfter);
 
 // Arrow between clusters
@@ -377,7 +418,7 @@ const arrowLine = new THREE.Line(
   new THREE.BufferGeometry().setFromPoints([
     new THREE.Vector3(-2.8, 0, 0), new THREE.Vector3(2.8, 0, 0)
   ]),
-  new THREE.LineDashedMaterial({ color: 0x2a8aaa, dashSize: 0.18, gapSize: 0.1, transparent: true, opacity: 0.45 })
+  new THREE.LineDashedMaterial({ color: 0x213362, dashSize: 0.18, gapSize: 0.1, transparent: true, opacity: 0.45 })
 );
 arrowLine.computeLineDistances();
 p4.add(arrowLine);
@@ -403,7 +444,7 @@ const coastCurve = new THREE.CatmullRomCurve3(
 );
 const coastNetwork = new THREE.Line(
   new THREE.BufferGeometry().setFromPoints(coastCurve.getPoints(120)),
-  new THREE.LineBasicMaterial({ color: 0x2a8aaa, transparent: true, opacity: 0.55 })
+  new THREE.LineBasicMaterial({ color: 0x213362, transparent: true, opacity: 0.55 })
 );
 p5.add(coastNetwork);
 
@@ -415,8 +456,8 @@ colombiaCities.forEach((c, i) => {
   const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(isDibulla ? 0.22 : 0.13, 12, 12),
     new THREE.MeshStandardMaterial({
-      color: isDibulla ? 0xd4503a : 0x2a8aaa,
-      emissive: isDibulla ? 0xd4503a : 0x4ad6e8,
+      color: isDibulla ? 0xffcd00 : 0x213362,
+      emissive: isDibulla ? 0xffcd00 : 0x213362,
       emissiveIntensity: 0.15,
     })
   );
@@ -424,7 +465,7 @@ colombiaCities.forEach((c, i) => {
   for (let r = 0; r < 2; r++) {
     const ring = new THREE.Mesh(
       new THREE.TorusGeometry(isDibulla ? 0.35 + r * 0.22 : 0.22 + r * 0.16, 0.02, 8, 40),
-      new THREE.MeshBasicMaterial({ color: isDibulla ? 0xd4503a : 0x4ad6e8, transparent: true, opacity: 0 })
+      new THREE.MeshBasicMaterial({ color: isDibulla ? 0xffcd00 : 0xdadada, transparent: true, opacity: 0 })
     );
     g.add(ring);
   }
@@ -435,7 +476,7 @@ colombiaCities.forEach((c, i) => {
 // Wave traveler particle
 const waveTraveler = new THREE.Mesh(
   new THREE.SphereGeometry(0.1, 8, 8),
-  new THREE.MeshBasicMaterial({ color: 0x4ad6e8, transparent: true, opacity: 0.9 })
+  new THREE.MeshBasicMaterial({ color: 0xffcd00, transparent: true, opacity: 0.9 })
 );
 p5.add(waveTraveler);
 let waveT = 0;
