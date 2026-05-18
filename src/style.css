@@ -761,6 +761,13 @@ h2.display {
   box-sizing: border-box;
 }
 
+.stage-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--glass-radius-sm);
+}
+
 .stage-card {
   flex: 1;
   min-width: 0;
