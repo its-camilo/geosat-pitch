@@ -368,46 +368,88 @@ const streamParticles = (() => {
 })();
 
 // =============================================================
-// PANEL 4 — Viabilidad: solo pilas de monedas (sin partículas sueltas)
+// PANEL 4 — Viabilidad: pilas de monedas + billetes (abanico)
 // =============================================================
 const p4 = new THREE.Group();
 p4.position.x = 4 * SCENE_SPACING;
 scene.add(p4);
 
-/** Pilas tipo “torta” de monedas: borde ligeramente biselado + metal */
+const p4Motion =
+  typeof matchMedia === 'undefined' || !matchMedia('(prefers-reduced-motion: reduce)').matches
+    ? 1
+    : 0.22;
+
+/** Pilas tipo “torta”: disco biselado + material por moneda (ripple de brillo) */
 function makeCoinStack(x, y, z, discCount, hex) {
   const g = new THREE.Group();
   const col = new THREE.Color(hex);
-  const mat = new THREE.MeshStandardMaterial({
-    color: col,
-    metalness: 0.9,
-    roughness: 0.15,
-    emissive: col,
-    emissiveIntensity: 0.065,
-  });
-  g.userData.coinMaterial = mat;
   const h = 0.046;
   const sep = 0.0025;
   for (let i = 0; i < discCount; i++) {
     const taper = i * 0.0018;
     const rBot = 0.39 - taper;
     const rTop = Math.max(0.3, rBot - 0.032);
-    const disc = new THREE.Mesh(new THREE.CylinderGeometry(rTop, rBot, h, 40, 1), mat);
+    const discMat = new THREE.MeshStandardMaterial({
+      color: col.clone().multiplyScalar(1 - i * 0.012),
+      metalness: 0.88 + i * 0.003,
+      roughness: 0.11 + i * 0.006,
+      emissive: col,
+      emissiveIntensity: 0.042 + (discCount - i) * 0.004,
+    });
+    const disc = new THREE.Mesh(new THREE.CylinderGeometry(rTop, rBot, h, 52, 1), discMat);
     disc.position.y = i * (h + sep);
     disc.rotation.y = i * 0.38;
     disc.userData.stackPhase = i * 0.21;
+    disc.userData.stackIndex = i;
     disc.userData.baseY = disc.position.y;
+    disc.userData.baseRotY = disc.rotation.y;
     g.add(disc);
   }
   g.position.set(x, y, z);
   g.userData.basePos = new THREE.Vector3(x, y, z);
+  g.userData.discCount = discCount;
   return g;
+}
+
+/** Abanico de billetes (planos) al lado de la pila “oro” */
+function makeBillFan(x, y, z, count) {
+  const grp = new THREE.Group();
+  const baseHue = 0.28;
+  for (let i = 0; i < count; i++) {
+    const c = new THREE.Color().setHSL(baseHue + i * 0.012, 0.45 + i * 0.04, 0.32 + i * 0.02);
+    const mat = new THREE.MeshStandardMaterial({
+      color: c,
+      roughness: 0.78,
+      metalness: 0.06,
+      side: THREE.DoubleSide,
+      emissive: new THREE.Color(0x062a18),
+      emissiveIntensity: 0.035,
+    });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(0.52, 0.24), mat);
+    const spread = count > 1 ? (i / (count - 1) - 0.5) * 0.95 : 0;
+    mesh.rotation.y = spread * 0.55;
+    mesh.rotation.x = spread * 0.08;
+    mesh.position.set(Math.sin(spread) * 0.06, i * 0.0032, Math.cos(spread) * 0.04);
+    mesh.userData.billPhase = i * 0.55 + spread;
+    grp.add(mesh);
+  }
+  grp.position.set(x, y, z);
+  grp.rotation.x = -0.12;
+  grp.rotation.y = 0.28;
+  grp.userData.basePos = new THREE.Vector3(x, y, z);
+  return grp;
 }
 
 const coinA = makeCoinStack(-1.05, -1.32, 0.18, 12, 0x213362);
 const coinB = makeCoinStack(0.52, -1.36, 0.12, 8, 0xffcd00);
 const coinC = makeCoinStack(1.82, -1.34, -0.08, 5, 0x575756);
-p4.add(coinA, coinB, coinC);
+const billFan = makeBillFan(-0.38, -1.34, 0.2, 6);
+
+const p4CoinGlow = new THREE.PointLight(0xffe8a8, 0.42, 5.5, 1.9);
+p4CoinGlow.position.set(0.52, -0.85, 1.35);
+p4.add(p4CoinGlow);
+
+p4.add(coinA, coinB, coinC, billFan);
 
 // =============================================================
 // PANEL 5 — Closing: Colombia Caribbean coast network
@@ -560,25 +602,60 @@ function animate() {
   }
   sp.needsUpdate = true;
 
-  // --- Viabilidad (p4): solo pilas de monedas, lectura más clara ---
-  const pulse = 0.05 + Math.sin(t * 1.1) * 0.035;
+  // --- Viabilidad (p4): monedas + billetes — anclaje suave, brillo en cascada, abanico vivo ---
+  const m4 = p4Motion;
+  const drift = 0.026 * m4;
   [coinA, coinB, coinC].forEach((stack, si) => {
     const b = stack.userData.basePos;
     stack.position.set(
-      b.x + Math.cos(t * 0.28 + si * 1.05) * 0.06,
-      b.y + Math.sin(t * 0.45 + si * 1.1) * 0.06,
-      b.z + Math.sin(t * 0.2 + si * 0.65) * 0.05
+      b.x + Math.cos(t * 0.31 + si * 1.18) * drift,
+      b.y + Math.sin(t * 0.48 + si * 1.12) * drift * 0.88 + Math.sin(t * 0.72 + si) * 0.012 * m4,
+      b.z + Math.sin(t * 0.23 + si * 0.68) * drift * 0.72
     );
-    stack.rotation.y += dt * (0.12 + si * 0.04);
-    stack.rotation.z = Math.sin(t * 0.4 + si * 0.85) * 0.05;
-    const m = stack.userData.coinMaterial;
-    if (m) m.emissiveIntensity = 0.055 + pulse + si * 0.012;
-    stack.children.forEach((disc) => {
+    stack.rotation.y += dt * (0.095 + si * 0.032) * m4;
+    stack.rotation.z = Math.sin(t * 0.36 + si * 0.88) * 0.038 * m4;
+    stack.rotation.x = Math.sin(t * 0.21 + si * 0.55) * 0.022 * m4;
+
+    const n = stack.userData.discCount ?? stack.children.length;
+    stack.children.forEach((disc, di) => {
       if (disc.userData.stackPhase === undefined) return;
       const ph = disc.userData.stackPhase;
-      disc.rotation.x = Math.sin(t * 1.05 + ph) * 0.028;
-      disc.position.y = disc.userData.baseY + Math.sin(t * 0.9 + ph + si) * 0.012;
+      const mat = disc.material;
+      const ripple = Math.sin(t * 1.65 - di * 0.4 + si * 0.55) * 0.5 + 0.5;
+      mat.emissiveIntensity = (0.038 + (n - di) * 0.0045 + ripple * 0.052 + si * 0.006) * m4 + 0.018;
+
+      disc.rotation.x = Math.sin(t * 1.08 + ph) * 0.034 * m4;
+      disc.rotation.y = (disc.userData.baseRotY ?? 0) + t * (0.22 + si * 0.07) * m4;
+      disc.position.y = disc.userData.baseY + Math.sin(t * 1.02 + ph + si * 0.35) * 0.016 * m4;
+      disc.position.x = Math.sin(t * 0.92 + ph * 1.7) * 0.0085 * m4;
+      disc.position.z = Math.cos(t * 0.84 + ph * 1.7) * 0.007 * m4;
+
+      const isTop = di === n - 1;
+      const pulseTop = 1 + Math.sin(t * 2.35 + si * 1.3) * 0.045 * m4;
+      disc.scale.setScalar(isTop ? pulseTop : 1);
     });
+  });
+
+  p4CoinGlow.intensity = (0.28 + Math.sin(t * 2.05) * 0.16 + Math.cos(t * 1.1) * 0.08) * m4 + 0.06;
+  p4CoinGlow.position.x = 0.52 + Math.sin(t * 0.9) * 0.06 * m4;
+  p4CoinGlow.position.y = -0.82 + Math.sin(t * 1.4) * 0.05 * m4;
+
+  const bf = billFan.userData.basePos;
+  billFan.position.set(
+    bf.x + Math.sin(t * 0.44) * 0.018 * m4,
+    bf.y + Math.sin(t * 0.62 + 0.4) * 0.01 * m4,
+    bf.z + Math.cos(t * 0.38) * 0.014 * m4
+  );
+  billFan.rotation.y = 0.28 + Math.sin(t * 0.4) * 0.14 * m4;
+  billFan.rotation.z = Math.sin(t * 0.55) * 0.06 * m4;
+  billFan.children.forEach((bill, bi) => {
+    const ph = bill.userData.billPhase ?? bi;
+    bill.rotation.z = Math.sin(t * 1.25 + ph) * 0.09 * m4;
+    bill.position.y = bi * 0.0032 + Math.sin(t * 0.88 + ph) * 0.008 * m4;
+    const bm = bill.material;
+    if (bm && bm.emissiveIntensity !== undefined) {
+      bm.emissiveIntensity = 0.03 + Math.sin(t * 1.5 + bi * 0.4) * 0.022 * m4;
+    }
   });
 
   // --- Panel 5: Colombia coast wave propagation ---
