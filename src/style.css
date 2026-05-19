@@ -967,7 +967,7 @@ h2.display {
   margin: 0 0 2px;
 }
 #panel-5 .scale-indicator {
-  margin-top: clamp(10px, 2vw, 18px);
+  margin-top: auto;
   padding: 8px 12px;
   gap: 8px 10px;
   align-self: stretch;
@@ -975,8 +975,8 @@ h2.display {
   max-width: 100%;
   box-sizing: border-box;
   justify-content: flex-start;
-  flex-wrap: wrap;
-  row-gap: 6px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 #panel-5 .per-capita-block {
   padding: 11px 18px;
@@ -1019,6 +1019,7 @@ h2.display {
 
 .phase-2 {
   background: var(--glass-fill-dim);
+  overflow: visible;
 }
 
 .phase-label {
