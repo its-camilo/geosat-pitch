@@ -1,10 +1,6 @@
 import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
 import { createPanel0 } from './panels/panel0.js';
 import { createPanel1 } from './panels/panel1.js';
-import { createPanel2 } from './panels/panel2.js';
-import { createPanel3 } from './panels/panel3.js';
-import { createPanel4 } from './panels/panel4.js';
-import { createPanel5 } from './panels/panel5.js';
 
 // ── Renderer ──────────────────────────────────────────────────
 const canvas = document.getElementById('three-canvas');
@@ -60,10 +56,6 @@ const bgParticles = (() => {
 // ── Panels ─────────────────────────────────────────────────────
 const panel0 = createPanel0(scene, 1 * SCENE_SPACING);
 const panel1 = createPanel1(scene, 1 * SCENE_SPACING);
-const panel2 = createPanel2(scene, 3 * SCENE_SPACING);
-const panel3 = createPanel3(scene, 4 * SCENE_SPACING);
-const panel4 = createPanel4(scene, 5 * SCENE_SPACING);
-const panel5 = createPanel5(scene, 6 * SCENE_SPACING);
 
 // ── Scroll tracking ────────────────────────────────────────────
 const fogDark  = new THREE.Color(0xffffff);
@@ -96,10 +88,6 @@ function animate() {
 
   panel0.update(dt, t);
   panel1.update(dt, t);
-  panel2.update(dt, t);
-  panel3.update(dt, t);
-  panel4.update(dt, t);
-  panel5.update(dt, t);
 
   bgParticles.rotation.y += dt * 0.004;
 

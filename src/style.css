@@ -797,24 +797,8 @@ h2.display {
 
 /* Reveal animation — all come in on panel-active */
 .panel-active .stage-card {
-  opacity: 0.35;
-  transform: translateY(0) scale(0.988);
-}
-
-/* Active stage cycling focus (JS sets data-stage on #panel-4) */
-#panel-4[data-stage="0"] .stage-card[data-stage-idx="0"],
-#panel-4[data-stage="1"] .stage-card[data-stage-idx="1"],
-#panel-4[data-stage="2"] .stage-card[data-stage-idx="2"],
-#panel-4[data-stage="3"] .stage-card[data-stage-idx="3"],
-#panel-4[data-stage="4"] .stage-card[data-stage-idx="4"] {
   opacity: 1;
   transform: translateY(0) scale(1);
-  background: var(--glass-fill-strong);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  border-left: 3px solid var(--ungrd-blue);
-  -webkit-backdrop-filter: blur(28px) saturate(1.55);
-  backdrop-filter: blur(28px) saturate(1.55);
-  box-shadow: var(--glass-inset), 0 16px 48px rgba(33, 51, 98, 0.12);
 }
 
 .stage-connector {
@@ -966,6 +950,17 @@ h2.display {
   line-height: 1;
   margin: 0 0 2px;
 }
+#panel-5 .p5-gfs-logo {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--glass-radius-sm);
+  background: rgba(255, 255, 255, 0.88);
+  padding: 14px 18px;
+  box-sizing: border-box;
+  align-self: flex-start;
+}
 #panel-5 .phase-strategy {
   font-size: clamp(22px, 2.35vw, 34px);
   line-height: 1.12;
@@ -1010,24 +1005,6 @@ h2.display {
 }
 
 /* Tres bloques verticales (cabecera · pills · lista) repartidos en la altura de la tarjeta */
-#panel-5 .phase-1-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: clamp(10px, 1.6vh, 16px);
-  min-width: 0;
-  min-height: 0;
-  width: 100%;
-  flex: 1;
-}
-#panel-5 .phase-1-head {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: clamp(4px, 0.9vw, 7px);
-  flex-shrink: 0;
-}
 #panel-5 .phase-1-copy .cost-list {
   margin-top: 0 !important; /* gana a .cost-list { margin-top: auto } */
   flex-shrink: 0;
@@ -1137,6 +1114,106 @@ h2.display {
 }
 .cost-list li span:last-child { color: var(--text); }
 .cost-list .zero { color: #213362 !important; font-weight: 700; }
+
+/* Phase-1: vertical layout with carousel as centrepiece */
+#panel-5 .phase-1 {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vh, 14px);
+}
+#panel-5 .phase-1-head {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3px, 0.5vh, 6px);
+  flex-shrink: 0;
+}
+
+/* Carousel container — stacks items in same cell */
+#panel-5 .p5-carousel {
+  display: grid;
+  place-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Each carousel item: image left, text right */
+#panel-5 .p5-carousel-item {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: stretch;
+  opacity: 0;
+  animation: p5-carousel-show 28s infinite;
+}
+
+@keyframes p5-carousel-show {
+  0%          { opacity: 0; transform: translateX(10px); }
+  4%, 11%     { opacity: 1; transform: translateX(0);    }
+  14%, 100%   { opacity: 0; transform: translateX(-10px); }
+}
+
+/* Image side */
+#panel-5 .p5-car-img {
+  flex: 0 0 55%;
+  border-radius: var(--glass-radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+#panel-5 .p5-logo-bg {
+  background: rgba(255, 255, 255, 0.88);
+  padding: 24px 28px;
+}
+#panel-5 .p5-logo-bg img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+#panel-5 .p5-photo-bg {
+  background: #000;
+}
+#panel-5 .p5-photo-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text side */
+#panel-5 .p5-car-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+#panel-5 .p5-car-cost {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+#panel-5 .p5-car-cost.zero { color: #213362 !important; }
+#panel-5 .p5-car-title {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.4vw, 20px);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.15;
+}
+#panel-5 .p5-car-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(10px, 0.9vw, 13px);
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
 
 .phase-icon-big { font-size: 32px; line-height: 1; }
 .phase-strategy {

@@ -25,32 +25,11 @@ function getScrollDistancePx() {
 let pinScrollTrigger = null
 let activeIdx = -1
 
-// ── Stage cycling for panel 4 (index 3) ──────────────────────
-let stageInterval = null
-let currentStage  = 0
-
-function startStageCycling() {
-  const p4 = panels[3]
-  if (!p4 || stageInterval) return
-  currentStage = 0
-  p4.dataset.stage = currentStage
-  stageInterval = setInterval(() => {
-    currentStage = (currentStage + 1) % 5
-    p4.dataset.stage = currentStage
-  }, 3000)
-}
-
-function stopStageCycling() {
-  if (stageInterval) { clearInterval(stageInterval); stageInterval = null }
-}
-
 function activatePanel(idx) {
   if (idx === activeIdx) return
   if (activeIdx >= 0 && panels[activeIdx]) panels[activeIdx].classList.remove('panel-active')
-  if (activeIdx === 3) stopStageCycling()
   activeIdx = idx
   if (panels[idx]) panels[idx].classList.add('panel-active')
-  if (idx === 3) startStageCycling()
 }
 
 function updateChrome(idx, progress) {
