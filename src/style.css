@@ -447,7 +447,7 @@ h2.display {
 .p3-left {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   justify-content: center;
 }
 .p3-right {
@@ -498,7 +498,7 @@ h2.display {
 }
 
 .p3-block {
-  padding: 18px 22px;
+  padding: 14px 22px;
   border: 1px solid var(--glass-edge);
   background: var(--glass-fill);
   border-radius: var(--glass-radius);
@@ -554,7 +554,7 @@ h2.display {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .p3-access-text,
 .p3-incentive-text { flex: 1; }
@@ -576,7 +576,7 @@ h2.display {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 .p3-videos video {
   width: 100%;
