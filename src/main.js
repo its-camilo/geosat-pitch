@@ -25,11 +25,33 @@ function getScrollDistancePx() {
 let pinScrollTrigger = null
 let activeIdx = -1
 
+// Robustly play a video: handles cases where source isn't loaded yet
+function playVideo(v) {
+  if (v.readyState >= 2) {
+    v.play().catch(() => {})
+  } else {
+    v.addEventListener('canplay', () => v.play().catch(() => {}), { once: true })
+    // Trigger load in case the video hasn't started loading
+    v.load()
+  }
+}
+
 function activatePanel(idx) {
   if (idx === activeIdx) return
-  if (activeIdx >= 0 && panels[activeIdx]) panels[activeIdx].classList.remove('panel-active')
+  // Pause videos in the panel being deactivated
+  if (activeIdx >= 0 && panels[activeIdx]) {
+    panels[activeIdx].classList.remove('panel-active')
+    panels[activeIdx].querySelectorAll('video').forEach(v => {
+      v.pause()
+      v.currentTime = 0
+    })
+  }
   activeIdx = idx
-  if (panels[idx]) panels[idx].classList.add('panel-active')
+  if (panels[idx]) {
+    panels[idx].classList.add('panel-active')
+    // Play videos in the newly active panel
+    panels[idx].querySelectorAll('video').forEach(v => playVideo(v))
+  }
 }
 
 function updateChrome(idx, progress) {
@@ -130,4 +152,8 @@ window.addEventListener('load', () => {
   syncViewportWidth()
   ScrollTrigger.refresh()
   updateChrome(0, 0)
+  // Ensure first panel videos play after full page load
+  if (panels[0]) {
+    panels[0].querySelectorAll('video').forEach(v => playVideo(v))
+  }
 })
