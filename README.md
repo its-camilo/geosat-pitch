@@ -38,26 +38,38 @@ npm run dev
 | `npm run build` | Compilación para producción   |
 | `npm run preview` | Vista previa del build      |
 
-## Despliegue en GitHub Pages
+## Despliegue en GitHub Pages (GitHub Actions)
 
-1. Genera el sitio estático:
+El repositorio incluye [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml): en cada push a `main` o `master` ejecuta `npm ci`, `npm run build` y sube `dist/` a Pages.
 
-   ```bash
-   npm run build
-   ```
+### Pasos en GitHub
 
-   La salida queda en la carpeta `dist/`.
+1. **Sube el workflow**  
+   Haz commit y push del archivo `.github/workflows/deploy-pages.yml` (y del resto del proyecto) al remoto.
 
-2. En el repositorio de GitHub: **Settings → Pages**.
+2. **Activa GitHub Pages con Actions**  
+   En el repo: **Settings → Pages** → **Build and deployment** → **Source**: elige **GitHub Actions** (no “Deploy from a branch”).
 
-3. **Source**: “Deploy from a branch” no aplica bien al `dist` generado en CI; lo habitual es usar **GitHub Actions** o subir el contenido de `dist/` a la rama `gh-pages`. Opción simple con [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages): en el workflow, tras `npm ci` y `npm run build`, publica la carpeta `dist`.
+3. **Primera ejecución**  
+   Ve a **Actions**, abre el workflow **Deploy to GitHub Pages** y comprueba que el job termina en verde. Si GitHub pide aprobar el entorno `github-pages`, autorízalo cuando te lo indique.
 
-4. **Base URL en Vite** (`vite.config.js`):
+4. **URL del sitio**  
+   En **Settings → Pages** verás **Your site is live at** `https://<usuario>.github.io/<nombre-repo>/` (repositorio estándar). La primera vez puede tardar uno o dos minutos.
 
-   - Sitio en la raíz del dominio `https://usuario.github.io/`: suele usarse `base: '/'`.
-   - Proyecto en subruta `https://usuario.github.io/nombre-repo/`: usa `base: '/nombre-repo/'` y vuelve a ejecutar `npm run build`.
+5. **Despliegues siguientes**  
+   Cada push a `main` o `master` vuelve a desplegar. También puedes lanzar el workflow a mano: **Actions → Deploy to GitHub Pages → Run workflow**.
 
-Con `base: './'` (valor actual) muchos despliegues estáticos sirven bien los assets con rutas relativas; ajusta según tu URL real.
+### Build local (opcional)
+
+```bash
+npm run build
+```
+
+La salida queda en `dist/`.
+
+### Base URL en Vite (`vite.config.js`)
+
+Con `base: './'` (valor actual) las rutas de assets son relativas y suelen funcionar tanto en subruta (`usuario.github.io/repo/`) como en otros hosts estáticos. Si necesitas URLs absolutas desde la raíz del dominio, usa `base: '/'` o `base: '/nombre-del-repo/'` según el caso.
 
 ## Estructura relevante
 
