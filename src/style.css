@@ -184,6 +184,7 @@ h2.display {
   height: 100%;
   object-fit: cover;
   opacity: 0.85;
+  border-radius: var(--glass-radius-sm);
 }
 
 .p1-stat-block {
