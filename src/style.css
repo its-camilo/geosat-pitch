@@ -36,6 +36,8 @@
   --chrome-inline: clamp(44px, 5vw, 88px);
   --chrome-top: clamp(22px, 3vh, 30px);
   --chrome-bottom: clamp(20px, 3vh, 28px);
+  /* Espacio mínimo sobre el borde inferior del viewport para la barra de progreso fija */
+  --progress-shelf: calc(var(--chrome-bottom) + 40px + 12px);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -439,24 +441,35 @@ h2.display {
    PANEL 3 — Innovación Social · Two stacked blocks
 ================================================================= */
 #panel-3 {
-  grid-template-columns: 3fr 1fr;
-  gap: clamp(32px, 4vw, 64px);
-  align-items: center;
+  grid-template-columns: minmax(0, 2.85fr) minmax(0, 1.12fr);
+  grid-template-rows: 1fr;
+  gap: clamp(12px, 1.75vw, 28px);
+  align-items: end;
+  min-height: 0;
   background: var(--bg);
+}
+/* Contenido pegado al borde inferior (más cerca de la barra), manteniendo hueco = progress-shelf */
+#panel-3.slide.panel {
+  padding-top: clamp(48px, 6vh, 82px);
+  padding-bottom: calc(var(--progress-shelf) + clamp(6px, 1vh, 12px));
+  padding-left: clamp(36px, 4vw, 66px);
+  padding-right: clamp(36px, 4vw, 66px);
 }
 .p3-left {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-content: center;
+  justify-content: flex-start;
+  min-height: 0;
 }
 .p3-right {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 10px;
+  justify-content: flex-start;
+  height: auto;
+  gap: 6px;
+  padding-top: 0;
 }
 
 .p3-carousel {
@@ -469,14 +482,14 @@ h2.display {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   opacity: 0;
   animation: p3-carousel-show 8s infinite;
 }
 
 .p3-carousel-item img {
   width: auto;
-  height: clamp(380px, 58vh, 620px);
+  height: clamp(420px, 58vh, 660px);
   display: block;
   object-fit: contain;
   filter: drop-shadow(0 8px 24px rgba(33, 51, 98, 0.18));
@@ -556,6 +569,55 @@ h2.display {
   align-items: flex-start;
   margin-bottom: 8px;
 }
+/* Panel 3: ~50% menos aire interno vs. versión anterior */
+#panel-3 .p3-block {
+  padding: 6px 12px;
+}
+#panel-3 .p3-block-title {
+  font-size: clamp(17px, 1.75vw, 26px);
+  line-height: 1.08;
+  margin-bottom: 0;
+}
+#panel-3 .p3-access-top,
+#panel-3 .p3-incentive-top {
+  gap: 8px;
+  margin-bottom: 2px;
+}
+#panel-3 .access-features {
+  gap: 3px;
+}
+#panel-3 .access-item {
+  padding: 4px 7px;
+  font-size: 9px;
+  gap: 4px;
+}
+#panel-3 .p3-quote {
+  font-size: clamp(11px, 0.95vw, 14px);
+  line-height: 1.32;
+  padding-left: 10px;
+}
+#panel-3 .body-text {
+  font-size: clamp(12px, 0.85vw, 14px);
+  line-height: 1.42;
+}
+#panel-3 .p3-eyebrow {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+#panel-3 .p3-headline {
+  font-size: clamp(30px, 3.3vw, 58px);
+  margin-bottom: 5px;
+  margin-top: 2px;
+  line-height: 1.06;
+}
+#panel-3 .p3-body {
+  margin: 2px 0;
+}
+#panel-3 .p3-mono-label {
+  opacity: 0.55;
+  margin-bottom: 5px;
+  text-align: center;
+}
 .p3-access-text,
 .p3-incentive-text { flex: 1; }
 
@@ -575,8 +637,12 @@ h2.display {
 .p3-videos {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: 4px;
+}
+#panel-3 .p3-videos {
+  margin-top: 4px;
+  padding-bottom: 0;
 }
 .p3-videos video {
   width: 100%;
@@ -1527,9 +1593,26 @@ h2.display {
   .phase { padding: 14px 16px; }
   .per-capita-num { font-size: clamp(44px, 6vw, 84px); }
   .p3-block { padding: 14px 18px; }
+  #panel-3.slide.panel {
+    padding-top: clamp(40px, 5vh, 64px);
+    padding-bottom: calc(var(--progress-shelf) + clamp(6px, 1vh, 12px));
+    padding-left: clamp(28px, 3.5vw, 52px);
+    padding-right: clamp(28px, 3.5vw, 52px);
+  }
+  #panel-3 .p3-headline {
+    font-size: clamp(24px, 2.85vw, 46px);
+    margin-bottom: 4px;
+  }
+  #panel-3 .p3-carousel-item img {
+    height: clamp(300px, 52vh, 520px);
+  }
 }
 @media (max-width: 900px) {
   #panel-2, #panel-3 { grid-template-columns: 1fr; }
+  #panel-3 {
+    grid-template-rows: auto auto;
+    align-items: stretch;
+  }
   .p2-right { display: none; }
   .viability-phases { grid-template-columns: 1fr; }
   .phase-2 { border-left: 1px solid var(--glass-edge); border-top: none; }
