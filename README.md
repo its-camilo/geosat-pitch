@@ -85,23 +85,23 @@ Cada diapositiva incluye un contenedor vacío:
 <div class="media-placeholder" data-media-slot="1"></div>
 ```
 
-**Video (HTML5):** dentro del `div`, añade por ejemplo:
+**Video (HTML5):** dentro del `div`, añade por ejemplo (usa rutas relativas `./…` para que funcionen en GitHub Pages bajo subruta):
 
 ```html
-<video class="pitch-media" src="/videos/diagnostico.webm" controls playsinline></video>
+<video class="pitch-media" src="./videos/diagnostico.webm" controls playsinline></video>
 ```
 
 **Imagen:**
 
 ```html
-<img class="pitch-media" src="/img/mapa-dibulla.webp" alt="Descripción" />
+<img class="pitch-media" src="./img/mapa-dibulla.webp" alt="Descripción" />
 ```
 
 **Canvas / WebGL:** inserta el `<canvas>` en el mismo `div` y monta tu escena apuntando a ese elemento desde tu módulo JS.
 
 Recomendaciones:
 
-- Coloca archivos pesados en `public/` (p. ej. `public/videos/...`) para servirlos con URL absoluta desde la raíz del sitio.
+- Coloca archivos pesados en `public/` (p. ej. `public/videos/...`) y enlázalos con rutas relativas `./videos/...` desde el HTML de las diapositivas (evita rutas que empiecen por `/`: en GitHub Pages apuntan al dominio, no al repositorio).
 - Añade reglas CSS para `.pitch-media` (por ejemplo `width: 100%; height: 100%; object-fit: contain; border-radius: inherit`) si quieres que rellenen el hueco sin romper el layout.
 
 ## Licencia
