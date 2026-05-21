@@ -368,6 +368,16 @@ body {
   color: var(--ungrd-blue);
 }
 
+.op-inclusion-img {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border-radius: var(--glass-radius-sm);
+  border: 1px solid var(--glass-edge);
+  object-fit: cover;
+  object-position: center;
+}
+
 .op-impact-card {
   margin-top: auto;
   padding: 1.2cqw 1.4cqw;
